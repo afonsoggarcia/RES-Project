@@ -7,4 +7,9 @@ class ArticlesController < ApplicationController
   def show
     skip_authorization
   end
+
+  def new
+    @article = Article.new
+    authorize @article
+  end
 end
