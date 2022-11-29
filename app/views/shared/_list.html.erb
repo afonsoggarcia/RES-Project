@@ -4,8 +4,8 @@
 <div class="cards container gap-4">
   <% @articles.each do |article|%>
     <div class="card-product">
-      <%= cl_image_tag article.photo.key, :width => 1920, :height => 1080, crop: :limit if article.photo.attached? %>
       <div class="card-product-infos">
+        <%= cl_image_tag article.photo.key, :width => 1920, :height => 1080, crop: :limit if article.photo.attached? %>
         <h4><%= article.title %></h4>
         <h5><%= article.subtitle %></h5>
         <a href="/articles/<%=article.id%>" class="card-button">Read more</a>
