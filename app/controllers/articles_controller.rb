@@ -12,4 +12,8 @@ class ArticlesController < ApplicationController
     @article = Article.new
     authorize @article
   end
+
+  def article_params
+    params.require(:article).permit(:title, :subtitle, :content, :photo)
+  end
 end
