@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home index show]
   def index
     skip_policy_scope
+    @articles = Article.all
   end
 
   def show
