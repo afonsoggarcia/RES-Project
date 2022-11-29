@@ -7,4 +7,13 @@ class ArticlesController < ApplicationController
   def show
     skip_authorization
   end
+
+  def new
+    @article = Article.new
+    authorize @article
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :subtitle, :content, :photo)
+  end
 end
