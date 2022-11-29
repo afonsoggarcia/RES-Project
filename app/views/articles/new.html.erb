@@ -2,7 +2,7 @@
 <section class="position-relative py-4 py-xl-5">
   <div class="container position-relative">
     <div class="row d-flex justify-content-center">
-      <div class="col-sm-5 col-md-6 col-xxl-4">
+      <div class="col-sm-5 col-md-6 col-xxl-8">
         <div class="card mb-5">
           <div class="card-body p-sm-5">
             <h3 class="mb-4">Create your article</h3>
@@ -14,7 +14,9 @@
                 <%= f.input :category, label:'Category', collection: @categories %>
                 <%= f.input :title, label:'Title'%>
                 <%= f.input :subtitle, label:'Subtitle'%>
-                <%= f.input :content, label:'Content'%>
+                <div class="form-inputs">
+                  <%= f.rich_text_area :rich_body %>
+                </div>
               </div>
               <div class="form-actions mb-2 pt-4">
                 <%= f.button :submit, 'New article', class: 'btn btn-dark rounded-pill d-block w-100' %>
