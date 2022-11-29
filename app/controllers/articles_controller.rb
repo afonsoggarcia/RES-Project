@@ -13,6 +13,8 @@ class ArticlesController < ApplicationController
     authorize @article
   end
 
+  private
+
   def article_params
     params.require(:article).permit(:title, :subtitle, :content, :photo)
   end
