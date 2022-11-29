@@ -4,16 +4,17 @@ class ArticlePolicy < ApplicationPolicy
     # def resolve
     #   scope.all
     # end
-    def create?
-      user.publisher || user.admin
-    end
+  end
 
-    def update?
-      user.publisher || user.admin
-    end
+  def create?
+    user.publisher || user.admin
+  end
 
-    def destroy?
-      user.admin
-    end
+  def update?
+    user.publisher || user.admin
+  end
+
+  def destroy?
+    user.admin
   end
 end
