@@ -6,6 +6,6 @@ class User < ApplicationRecord
   has_many :topics
   has_many :replies
   has_many :articles
-  has_many :likes
-  validates :first_name, :last_name, :nickname, :email, :password, :believer, presence: true
+  has_many :likes, dependent: :destroy
+  validates :first_name, :last_name, :nickname, :believer, presence: true
 end
