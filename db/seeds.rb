@@ -6,9 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 puts 'Cleaning DB'
-Article.destroy_all
-Category.destroy_all
 Topic.destroy_all
+Article.destroy_all
 users = User.where(admin: false)
 users.destroy_all
 puts "Users not admin deleted"
