@@ -1,5 +1,5 @@
 class RepliesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home index show]
+  skip_before_action :authenticate_user!, only: %i[home index show destroy]
   def index
     skip_policy_scope
     @replies = Reply.all
@@ -27,6 +27,15 @@ class RepliesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    skip_authorization
+    @reply = Reply.find(params[:id])
+    @reply.destroy
+    redirect_to topic_path(@reply.topic), status: :see_other
+  end
+
+  private
 
   def reply_params
     params.require(:reply).permit(:content)

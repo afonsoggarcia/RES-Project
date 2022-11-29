@@ -1,10 +1,20 @@
-	<h1> <%=@topic.title%> </h1>
-	<p> <%=@topic.description%></p>
+<h1> <%=@topic.title%> </h1>
+<p> <%=@topic.description%></p>
+<%= link_to "Edit this topic", edit_topic_path(@topic) %>
 
 <h4>Comments:</h4>
 <% @topic.replies.each do |reply| %>
-<p><strong><%= current_user.nickname %></strong>: <%= reply.content %></p>
-<%end%>
+<p><strong><%= current_user.nickname %></strong>: <%= reply.content %>
 
+        <%= link_to reply_path(reply), data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
+        <i class="fa-regular fa-trash-can"></i>
+        <%end%>
+<%end%></p>
+<br/>
+<%= link_to "delete this topic", topic_path(@topic), class: 'btn btn-primary', data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this topic?" } %>
+<br/>
+<br/>
 <a class="btn btn btn-primary" href="<%=@topic.id%>/replies/new">Create a new comment</a>
+<br/>
+<br/>
 <a class="btn btn btn-primary" href="/topics">Return to topics</a>
