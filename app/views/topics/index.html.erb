@@ -1,7 +1,6 @@
-  <div class="d-flex align-items-center justify-content-between p-3">
-    <h1 class="topic-text">Topics</h1>
-    <a class="btn btn btn-dark" href="/topics/new">New topic</a>
-  </div>
+<%= render 'shared/navbar' %>
+<h1>Topics</h1>
+  <br/>
   <% @topics.each do |topic| %>
   <div class="cards m-4 p-4 text-center">
   <div>
