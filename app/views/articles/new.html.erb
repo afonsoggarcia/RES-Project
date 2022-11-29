@@ -11,6 +11,9 @@
               <div class="form-inputs mb-3">
                 <%= f.input :photo, label:'Photo', as: :file %>
                 <%= f.input :title, label:'Title'%>
+                <div class="form-inputs">
+                  <%= f.rich_text_area :rich_body %>
+                </div>
                 <%= f.input :subtitle, label:'Subtitle'%>
                 <%= f.input :content, label:'Content'%>
               </div>
