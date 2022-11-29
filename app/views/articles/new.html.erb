@@ -1,0 +1,26 @@
+<section class="position-relative py-4 py-xl-5">
+  <div class="container position-relative">
+    <div class="row d-flex justify-content-center">
+      <div class="col-sm-5 col-md-6 col-xxl-4">
+        <div class="card mb-5">
+          <div class="card-body p-sm-5">
+            <h3 class="mb-4">Create your article</h3>
+            <%= simple_form_for(@article) do |f| %>
+              <%= f.error_notification %>
+              <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+              <div class="form-inputs mb-3">
+                <%= f.input :photo, label:'Photo', as: :file %>
+                <%= f.input :title, label:'Title'%>
+                <%= f.input :subtitle, label:'Subtitle'%>
+                <%= f.input :content, label:'Content'%>
+              </div>
+              <div class="form-actions mb-2 pt-4">
+                <%= f.button :submit, 'New article', class: 'btn btn-dark rounded-pill d-block w-100' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
