@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get "about", to: "pages#about"
+  get "features", to: "pages#features"
   resources :articles
   resources :topics do
     resources :replies, only: [:new, :create]
