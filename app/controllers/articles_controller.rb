@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @article.user = current_user
     authorize @article
   end
 
