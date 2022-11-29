@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home index show]
   def index
     skip_policy_scope
+    @articles = Article.all
   end
 
   def show
@@ -12,11 +13,14 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @article.user = current_user
+    @categories = Category.all
     authorize @article
   end
 
   def create
-    @article = Article.new(article_params)
+    @category = Category.find(article_params[:category])
+    @article = Article.new(title: article_params[:title], subtitle: article_params[:subtitle], content: article_params[:content], photo: article_params[:photo])
+    @article.category = @category
     @article.user = current_user
     authorize @article
     if @article.save
@@ -33,6 +37,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :subtitle, :content, :rich_body, :photo)
+    params.require(:article).permit(:title, :subtitle, :content, :rich_body, :category, :photo)
   end
 end

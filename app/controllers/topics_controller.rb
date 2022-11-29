@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home index show]
+  skip_before_action :authenticate_user!, only: %i[home index show destroy update]
   def index
     skip_policy_scope
     @topics = Topic.all
@@ -23,6 +23,28 @@ class TopicsController < ApplicationController
       redirect_to topic_path(@topic), notice: "Topic created!"
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    skip_authorization
+    @topic = Topic.find(params[:id])
+  end
+
+  def destroy
+    skip_authorization
+    @topic = Topic.find(params[:id])
+    @topic.destroy
+    redirect_to topics_url, notice: "Topic was successfully destroyed."
+  end
+
+  def update
+    skip_authorization
+    @topic = Topic.find(params[:id])
+    if @topic.update(topic_params)
+      redirect_to @topic, notice: "topic was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
