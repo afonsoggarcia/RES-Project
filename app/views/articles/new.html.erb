@@ -10,6 +10,7 @@
               <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
               <div class="form-inputs mb-3">
                 <%= f.input :photo, label:'Photo', as: :file %>
+                <%= f.input :category, label:'Category', collection: @categories %>
                 <%= f.input :title, label:'Title'%>
                 <%= f.input :subtitle, label:'Subtitle'%>
                 <%= f.input :content, label:'Content'%>
