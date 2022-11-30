@@ -9,4 +9,7 @@ class PagesController < ApplicationController
 
   def features
   end
+
+  def dashboard
+  end
 end

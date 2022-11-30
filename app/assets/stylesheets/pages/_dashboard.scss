@@ -1,12 +1,12 @@
-// Specific CSS for your home-page
-.banner {
+.dash {
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  padding: 15px 0;
+  margin: 0 -13px;
   height: 100vh;
 }
 
-.banner h1 {
+.dash h1 {
   margin: 0;
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -14,21 +14,9 @@
   font-weight: bold;
 }
 
-.banner p {
+.dash p {
   font-size: 20px;
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-
-.ml13 {
-  font-size: 1.9em;
-  text-transform: uppercase;
-  letter-spacing: 0.5em;
-  font-weight: 600;
-}
-
-.ml13 .letter {
-  display: inline-block;
-  line-height: 1em;
 }

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get "about", to: "pages#about"
   get "features", to: "pages#features"
+  get "dashboard", to: "pages#dashboard"
   resources :articles
   resources :topics do
     resources :replies, only: [:new, :create]
