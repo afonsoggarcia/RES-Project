@@ -18,8 +18,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @category = Category.find(article_params[:category])
-    @article = Article.new(title: article_params[:title], subtitle: article_params[:subtitle], content: article_params[:content], photo: article_params[:photo])
+    @category = Category.find(params[:article][:category])
+    @article = Article.new(article_params)
     @article.category = @category
     @article.user = current_user
     authorize @article
@@ -30,6 +30,16 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def dash_index
+    @articles = Article.where(accepted: false)
+    @articles = policy_scope(Article)
+  end
+
+  def publisher_index
+    @articles = Article.where(user: current_user)
+    @articles = policy_scope(Article)
+  end
+
   private
 
   def set_article
@@ -37,6 +47,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :subtitle, :content, :rich_body, :category, :photo)
+    params.require(:article).permit(:title, :subtitle, :rich_body, :photo)
   end
 end
