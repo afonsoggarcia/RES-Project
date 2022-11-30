@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home index show destroy update]
   def index
     skip_policy_scope
-    @topics = Topic.all
+    @topics = Topic.all.order("created_at DESC")
   end
 
   def show

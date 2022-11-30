@@ -1,3 +1,4 @@
+<%= render 'shared/navbar' %>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -27,7 +28,8 @@
                 required: true %>
     <%= f.input :nickname,
                 required: true %>
-    <%= f.input :believer,
+    <%= f.input :believer, input_html: { class: "toggle" } %>
+    <%# f.input :believer,
                 required: true %>
     <%= f.input :description,
                 required: true %>

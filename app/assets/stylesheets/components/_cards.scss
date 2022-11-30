@@ -1,0 +1,35 @@
+//cards fórum
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  height: 150px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  font-family: "Papyrus";
+  background: white;
+}
+
+.forum {
+  font-family: 'Lato', sans-serif;
+  background: #EDEFF0;
+ }
+
+ .header {
+ width: 100%;
+ margin: 0 auto;
+ background: white;
+ }
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
