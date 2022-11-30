@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @article.user = current_user
+    # @article.user = current_user
     @categories = Category.all
     authorize @article
   end

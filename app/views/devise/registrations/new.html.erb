@@ -22,7 +22,8 @@
                 required: true %>
     <%= f.input :nickname,
                 required: true %>
-    <%= f.input :believer,
+    <%= f.input :believer, input_html: { class: "toggle" } %>
+    <%# f.input :believer,
                 required: true %>
     <%= f.input :description,
                 required: true %>
