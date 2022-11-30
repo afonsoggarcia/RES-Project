@@ -1,0 +1,7 @@
+<% if current_user.admin %>
+  <%= 'admin' %>
+<% elsif current_user.publisher %>
+  <%= 'publisher' %>
+<% else %>
+  <%= 'current_user' %>
+<% end %>

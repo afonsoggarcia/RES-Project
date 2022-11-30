@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :replies
   has_many :articles
   has_many :likes, dependent: :destroy
-  validates :first_name, :last_name, :nickname, :believer, presence: true
+  validates :first_name, :last_name, :nickname, presence: true
   validates :nickname, uniqueness: true
   has_one_attached :photo
 end

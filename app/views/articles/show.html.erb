@@ -1,4 +1,6 @@
 <%= render 'shared/navbar' %>
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
-<%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+<%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill if @article.photo.attached? %>
+<div class="container">
+    <h2><%= @article.title %></h2>
+    <%= @article.rich_body %>
+</div>
