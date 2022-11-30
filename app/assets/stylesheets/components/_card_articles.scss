@@ -1,0 +1,112 @@
+.card-trip {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0);
+  // box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-trip > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.container h1 {
+  font-size: 72px;
+  font-family: helvetica;
+}
+
+.card-trip h4 {
+  font-size: 18px;
+  font-weight: lighter;
+  margin: 0;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.card-trip p {
+  font-size: 13px;
+  font-family: helvetica;
+  opacity: .7;
+  margin: 0;
+  text-align: left;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+}
+
+.card-trip .card-trip-infos {
+  padding: 16px 0 0 0 ;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  color: #ffffff;
+}
+
+.card-trip-infos .card-trip-user {
+  position: absolute;
+  right: 90px;
+  top: -15px;
+  // width: 100px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 24px 18px;
+}
+
+.btn-flat {
+  color: white;
+  padding: 6px 24px;
+  font-size: 12px;
+  font-family: helvetica;
+  // border-radius: 4px;
+  background: #070707da;
+  text-decoration: none;
+  // transition: background 0.3s ease;
+}
+
+.btn-flat:hover {
+  background: #4D04C4;
+  color: white;
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

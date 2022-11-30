@@ -1,4 +1,5 @@
 <%= render 'shared/navbar' %>
+
 <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill if @article.photo.attached? %>
 <div class="container">
     <h2><%= @article.title %></h2>
