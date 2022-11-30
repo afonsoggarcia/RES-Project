@@ -2,7 +2,7 @@ class RepliesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home index show destroy]
   def index
     skip_policy_scope
-    @replies = Reply.all
+    @replies = Reply.all.order("created_at DESC")
   end
 
   def show
