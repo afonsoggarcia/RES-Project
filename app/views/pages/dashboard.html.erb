@@ -1,1 +1,7 @@
-<%= render 'shared/sidebar' %>
+<% if current_user.admin %>
+  <%= render 'admin_dash' %>
+<% elsif current_user.publisher %>
+  <%= render 'publisher_dash' %>
+<% else %>
+  <%= render 'regular_dash' %>
+<% end %>
