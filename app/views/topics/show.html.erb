@@ -1,21 +1,26 @@
 <%= render 'shared/navbar' %>
-<h1> <%=@topic.title%> </h1>
-<p> <%=@topic.description%></p>
-<%= link_to "Edit this topic", edit_topic_path(@topic) %>
-
-<h4>Comments:</h4>
-<% @topic.replies.each do |reply| %>
-<p><strong><%= current_user.nickname %></strong>: <%= reply.content %>
-
+  <div class="forum">
+  <div class=" header d-flex align-items-center justify-content-between">
+  <h2 class="topic-text">RoundEarthForum</h2>
+  <%= link_to "Edit this topic", edit_topic_path(@topic), class:"btn btn btn-dark" %>
+  </div>
+  <div class="m-5 p-4 text-center">
+  <h1> <%=@topic.title%> </h1>
+  <p> <%=@topic.description%></p>
+  </div>
+  <div class="px-2">
+  <a class="btn btn btn-dark" href="<%=@topic.id%>/replies/new"> New comment</a>
+  </div>
+<hr>
+  <h4 class=" px-3">Comments:</h4>
+  <% @topic.replies.each do |reply| %>
+<div class="notification px-3">
+      <p>Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
+      <strong><%= @topic.user.nickname%></p></strong> <%= reply.content %>
         <%= link_to reply_path(reply), data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
-        <i class="fa-regular fa-trash-can"></i>
+        Delete<i class="fa-regular fa-trash-can"></i></p>
         <%end%>
-<%end%></p>
-<br/>
-<%= link_to "delete this topic", topic_path(@topic), class: 'btn btn-primary', data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this topic?" } %>
-<br/>
-<br/>
-<a class="btn btn btn-primary" href="<%=@topic.id%>/replies/new">Create a new comment</a>
-<br/>
-<br/>
-<a class="btn btn btn-primary" href="/topics">Return to topics</a>
+<hr>
+  </div>
+        <%end%>
+</div>

@@ -19,7 +19,15 @@
  width: 100%;
  margin: 0 auto;
  background: white;
+ padding: 10px 60px 10px 60px;
  }
+
+
+.card-topic {
+  font-family: 'Lato', sans-serif;
+  background: #EDEFF0;
+}
+
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
   .cards {
