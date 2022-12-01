@@ -11,50 +11,36 @@
 @import "form";
 @import "text";
 
-.cards-grid-test {
+.article-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 32px 1fr 32px;
   grid-gap: 24px;
+
+  .social-icons{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 1.5em;
+
+  }
 }
 
-.card-test {
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
-
-.card-test > img {
-  height: 400px;
+.article-image > img {
+  height: 420px;
   width: 100%;
   object-fit: cover;
 }
 
-.card-test h2 {
+.article-title {
   font-size: 72px;
-  font-weight: bold;
-  font-family: Helvetica;
-  margin: 50px ;
+  // font-weight: bold;
+  font-family: Inter;
+  text-transform: uppercase;
+  margin: 56px ;
   text-align: left;
 }
 
-.card-test p {
-  font-size: 12px;
-  // opacity: .7;
-  margin: 50px;
-}
-
-
-.card-test .card-test-infos {
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
-}
-
-.card-test-infos .card-test-user {
-  position: absolute;
-  right: 16px;
-  top: -20px;
-  width: 40px;
+.article-text {
+  font-family: Inter;
+  text-align: justify;
 }
