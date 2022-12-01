@@ -18,12 +18,12 @@
   height: 20px;
   top: 0;
   left: 0;
-  background-color: #EAEAEA;
+  background-color: #1EDD88;
   border-radius: 50rem;
 }
 
 .toggle:checked + label::before {
-  background-color: #1EDD88;
+  background-color: #EAEAEA;
 }
 
 .toggle + label::after {
