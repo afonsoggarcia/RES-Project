@@ -2,8 +2,10 @@
   background-size: cover;
   background-position: center;
   padding: 15px 0;
-  margin: 0 -13px;
   height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  // overflow-y: auto;
 }
 
 .dash h1 {
@@ -19,4 +21,16 @@
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.dash-text {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.content-container {
+  max-height: calc(100vh - 10rem);
+  overflow-y: auto;
 }

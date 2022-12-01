@@ -2,7 +2,7 @@
 <div class="forum">
   <div class=" header d-flex align-items-center justify-content-between">
     <h2 class="text-dark">RoundEarthForum</h2>
-    <%= link_to "Edit this topic", edit_topic_path(@topic), class:"bt btn btn-light text-light" %>
+    <%= link_to "Edit this topic", edit_topic_path(@topic), class:"bt btn btn-light text-light" if current_user && @topic.user == current_user %>
     </div>
   <div class="topic-topic m-5 p-4 text-center">
     <h1 class="text-dark"> <%=@topic.title%> </h1>
@@ -17,13 +17,18 @@
     </div>
   </div>
 </div>
+
     <% @topic.replies.each do |reply| %>
-  <div class="topic-topic m-5 p-4">
+  </div>
+  <div class="topic-topic  m-5 p-4">
       Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
-      <strong class="text-dark"><%= reply.user.nickname%></p></strong><h4 class="topic-text"><%= reply.content %></h4>
-        <br/><%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
-        Delete this comment  <i class="fa-regular fa-trash-can"></i>
-        <%end%>
+      <strong><%= reply.user.nickname%></p></strong><h4><%= reply.content %></h4>
+      <% if current_user && reply.user == current_user  %>
+        <br/><%= link_to reply_path(reply), data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
+        Delete<i class="fa-regular fa-trash-can"></i>
+        <% end %>
+      <% end %>
+    <% end %>
         </div>
         <%end%>
 </div>

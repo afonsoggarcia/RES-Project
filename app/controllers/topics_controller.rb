@@ -12,14 +12,15 @@ class TopicsController < ApplicationController
   end
 
   def new
-    skip_authorization
     @topic = Topic.new
+    @topic.user = current_user
+    authorize @topic
   end
 
   def create
-    skip_authorization
     @topic = Topic.new(topic_params)
     @topic.user = current_user
+    authorize @topic
     if @topic.save
       redirect_to topic_path(@topic), notice: "Topic created!"
     else
@@ -28,20 +29,20 @@ class TopicsController < ApplicationController
   end
 
   def edit
-    skip_authorization
     @topic = Topic.find(params[:id])
+    authorize @topic
   end
 
   def destroy
-    skip_authorization
     @topic = Topic.find(params[:id])
+    authorize @topic
     @topic.destroy
     redirect_to topics_url, notice: "Topic was successfully destroyed."
   end
 
   def update
-    skip_authorization
     @topic = Topic.find(params[:id])
+    authorize @topic
     if @topic.update(topic_params)
       redirect_to @topic, notice: "topic was successfully updated."
     else

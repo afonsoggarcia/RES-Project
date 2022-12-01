@@ -1,14 +1,9 @@
   <%= turbo_frame_tag 'content' do %>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Article</p>
-    </div>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Hello</p>
-    </div>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Laura</p>
-    </div>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Bye</p>
-    </div>
+
+    <% @articles.each do |article| %>
+      <div class="container border border-white mt-2 py-2" data-dashboard-target="content">
+        <h2 class='text-light'><%= article.title %></h2>
+        <p><%= article.user.nickname %> <%= link_to 'See content', article_path(article), class:'btn btn-ghost rounded-pill' %> </p>
+      </div>
+    <% end %>
   <% end %>

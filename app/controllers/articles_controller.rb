@@ -1,9 +1,12 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show destroy edit update]
   skip_before_action :authenticate_user!, only: %i[home index show]
+
   def index
     skip_policy_scope
+    @articles = Article.all.first(4)
     @articles = Article.all
+    @believer = params[:believer] == "true" if params[:believer]
   end
 
   def show
@@ -12,7 +15,6 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @article.user = current_user
     @categories = Category.all
     authorize @article
   end
@@ -21,7 +23,6 @@ class ArticlesController < ApplicationController
     @category = Category.find(params[:article][:category])
     @article = Article.new(article_params)
     @article.category = @category
-    @article.user = current_user
     authorize @article
     if @article.save
       redirect_to article_path(@article), notice: "Article successfully created!"
@@ -29,7 +30,24 @@ class ArticlesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
+
+  def edit
+    @categories = Category.all
+    authorize @article
+  end
+
+  def update
+    @category = Category.find(params[:article][:category])
+    @article.category = @category
+    @article.accepted = false
+    authorize @article
+    if @article.update(article_params)
+      redirect_to @article, notice: "article was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_article
