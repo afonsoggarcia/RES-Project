@@ -1,7 +1,7 @@
 <%= render 'shared/navbar' %>
 <div class="forum">
   <div class=" header d-flex align-items-center justify-content-between">
-    <h2 class="topic-text text-dark">RoundEarthForum</h2>
+    <h2 class="text-dark">RoundEarthForum</h2>
     <a class="bt btn btn-light text-light" href="/topics/new">New Post</a>
   </div>
   <% @topics.each do |topic| %>
@@ -9,7 +9,7 @@
       <p>Published <%=time_ago_in_words(topic.created_at)%> ago,
       sent by: <strong><%= topic.user.nickname%></p></strong>
       <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
-      <h2 class="topic-text"> <%= topic.title%> </h2>
+      <h2 class=""> <%= topic.title%> </h2>
         <%end%>
     </div>
      <%end%>

@@ -43,3 +43,12 @@
 .toggle:checked + label::after {
   left: 18px;
 }
+
+.form-comment {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  width: 500px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background: white;
+}
