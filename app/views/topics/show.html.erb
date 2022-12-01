@@ -5,14 +5,22 @@
     <%= link_to "Edit this topic", edit_topic_path(@topic), class:"bt btn btn-light text-light" if current_user && @topic.user == current_user %>
     </div>
   <div class="topic-topic m-5 p-4 text-center">
-    <h1 class=" text-dark"> <%=@topic.title%> </h1>
-    <p class=" text-dark"> <%=@topic.description%></p>
+    <h1 class="text-dark"> <%=@topic.title%> </h1>
+    <p class="text-dark"> <%=@topic.description%></p>
   </div>
   <div class=" header-2 d-flex align-items-center justify-content-between">
     <h1 class="text-light">Comments:</h1>
-    <%= link_to 'New comment', new_topic_reply_path(@topic), class:"btn btn-light" if user_signed_in? %>
-    <% @topic.replies.each do |reply| %>
+    <div class="d-flex flex-column">
+      <a class="btn btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Create a new comment</a>
+      <div class="collapse" id="collapseExample">
+      <%= render"form_reply" %>
+    </div>
   </div>
+</div>
+
+    
+  </div>
+  <% @topic.replies.each do |reply| %>
   <div class="topic-topic  m-5 p-4">
       Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
       <strong><%= reply.user.nickname%></p></strong><h4><%= reply.content %></h4>
@@ -21,6 +29,6 @@
         Delete<i class="fa-regular fa-trash-can"></i>
         <% end %>
       <% end %>
-    <% end %>
         </div>
+        <%end%>
 </div>

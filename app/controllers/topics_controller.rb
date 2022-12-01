@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
   def show
     skip_authorization
     @topic = Topic.find(params[:id])
+    @reply = Reply.new
   end
 
   def new
