@@ -8,27 +8,30 @@
     <h1 class="text-dark"> <%=@topic.title%> </h1>
     <p class="text-dark"> <%=@topic.description%></p>
   </div>
-  <div class=" header-2 d-flex align-items-center justify-content-between">
-    <h1 class="text-light">Comments:</h1>
-    <div class="d-flex flex-column">
-      <a class="btn btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Create a new comment</a>
+    <h1 class="text-light header-2 ">Comments:</h1>
+  <div class=" header-2 ">
+    <p>
+    <div class="d-block">
+      <a class="btn btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Comment</a>
+    </p>
       <div class="collapse" id="collapseExample">
       <%= render"form_reply" %>
     </div>
   </div>
 </div>
 
-    
-  </div>
-  <% @topic.replies.each do |reply| %>
-  <div class="topic-topic  m-5 p-4">
+    <% @topic.replies.each do |reply| %>
+
+  <div class="topic-topic m-5 p-4">
       Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
       <strong><%= reply.user.nickname%></p></strong><h4><%= reply.content %></h4>
       <% if current_user && reply.user == current_user  %>
-        <br/><%= link_to reply_path(reply), data: {turbo_method: :delete, turbo_confirm: "Are sure you sure?"} do %>
-        Delete<i class="fa-regular fa-trash-can"></i>
+
+        <br/><%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
+        Delete <i class="fa-regular fa-trash-can"></i>
+
         <% end %>
-      <% end %>
+        <% end %>
         </div>
-        <%end%>
+    <%end%>
 </div>
