@@ -1,6 +1,14 @@
 <%= render 'shared/navbar' %>
-<%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill if @article.photo.attached? %>
-<div class="container">
-    <h2><%= @article.title %></h2>
-    <%= @article.rich_body %>
+<div class="container mt-5 ">
+  <div class="cards-grid-test">
+    <div class="card-test">
+        <h2><%= @article.title %></h2>
+        <%= cl_image_tag @article.photo.key, height: 1920, width: 1080, crop: :limit if @article.photo.attached? %>
+      <div class="card-test-infos">
+        <div>
+          <p><%= @article.rich_body %></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
