@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     skip_policy_scope
-    @articles = Article.all
+    @articles = Article.all.first(4)
   end
 
   def show
