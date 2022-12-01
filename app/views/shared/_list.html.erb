@@ -3,12 +3,9 @@
     <div>
       <% if @believer %>
         <h1 class="pb-3 mb-3">Welcome believer</h1>
-        <h3 class="pb-3 mb-3">The Earth is very pleased to have you as a member of our community. Make yourself at home... Here, you'll be able to access the latest news, discuss with friends and, of course, share our articles with people you know.</h3>
-      <% elsif @believer.nil? %>
-        <h1 class="pb-3 mb-3">Articles List</h1>
+        <h3 class="pb-3 mb-3">The Earth is very pleased to have you as a member of our community. Here, you'll be able to access the latest news, discuss with friends and, of course, share our articles with people you know. Make yourself at home...</h3>
       <% else %>
         <h1 class="pb-3 mb-3">Welcome Non-believer</h1>
-        <h3 class="pb-3 mb-3">Well... it's great to have you with us! We hope to spin and crack your old square beliefs! Here, you'll be able to access the latest news, discuss with friends and, of course, share our articles with people you know.</h3>
       <% end %>
       <br>
       <br>
