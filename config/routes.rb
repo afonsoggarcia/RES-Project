@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
   get "features", to: "pages#features"
   get "dashboard", to: "pages#dashboard"
+  get 'content', to: "pages#content"
   resources :articles
   resources :topics do
     resources :replies, only: [:new, :create]

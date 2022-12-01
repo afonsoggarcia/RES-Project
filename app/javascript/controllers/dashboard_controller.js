@@ -9,6 +9,11 @@ export default class extends Controller {
   }
 
   displayContent() {
-    console.log('deu boa')
+    const url = `/dashboard`
+    fetch(url)
+    .then(response => response.text())
+    .then((data) => {
+      console.log(data)
+    })
   }
 }
