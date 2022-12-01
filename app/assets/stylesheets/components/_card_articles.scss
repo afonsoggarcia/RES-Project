@@ -1,25 +1,25 @@
-.card-trip {
+.card-article {
   overflow: hidden;
   background: rgba(255, 255, 255, 0);
   // box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-.card-trip > img {
+.card-article > img {
   height: 200px;
   width: 100%;
   object-fit: cover;
 }
 
-.container h1 {
+.article-text-style {
   font-size: 72px;
-  font-family: Merriweather;
-  color: white;
+  font-family: Inter;
+  color: rgb(231, 226, 210);
   text-align: left;
   font-weight: bold;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid rgb(231, 226, 210);
 }
 
-.card-trip h4 {
+.card-article h4 {
   font-size: 18px;
   font-weight: lighter;
   margin: 0;
@@ -28,7 +28,7 @@
   text-align: left;
 }
 
-.card-trip p {
+.card-article p {
   font-size: 13px;
   font-family: helvetica;
   opacity: .7;
@@ -42,30 +42,30 @@
   -webkit-line-clamp: 3;
 }
 
-.card-trip .card-trip-infos {
+.card-article .card-article-infos {
   padding: 16px 0 0 0 ;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
-  color: #ffffff;
+  color: rgb(231, 226, 210);
 }
 
-.card-trip-infos .card-trip-user {
+.card-article-infos .card-article-user {
   position: absolute;
   right: 90px;
   top: -15px;
   // width: 100px;
 }
 
-.cards-article {
+.cards-article-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 24px 18px;
 }
 
 .btn-flat {
-  color: white;
+  color: rgb(231, 226, 210);
   padding: 6px 24px;
   font-size: 12px;
   font-family: helvetica;
@@ -83,7 +83,7 @@
 .back-articles {
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  padding: 104px 0;
   height: 100vh;
 }
 
