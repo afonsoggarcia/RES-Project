@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
   def index
     skip_policy_scope
     @articles = Article.all
+    @believer = params[:believer] == "true" if params[:believer]
   end
 
   def show

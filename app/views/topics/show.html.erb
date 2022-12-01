@@ -1,22 +1,21 @@
 <%= render 'shared/navbar' %>
 <div class="forum">
   <div class=" header d-flex align-items-center justify-content-between">
-    <h2 class="topic-text text-dark">RoundEarthForum</h2>
+    <h2 class="text-dark">RoundEarthForum</h2>
     <%= link_to "Edit this topic", edit_topic_path(@topic), class:"bt btn btn-light text-light" if current_user && @topic.user == current_user %>
     </div>
   <div class="topic-topic m-5 p-4 text-center">
-    <h1 class="topic-text text-dark"> <%=@topic.title%> </h1>
-    <p class="topic-text text-dark"> <%=@topic.description%></p>
+    <h1 class=" text-dark"> <%=@topic.title%> </h1>
+    <p class=" text-dark"> <%=@topic.description%></p>
   </div>
   <div class=" header-2 d-flex align-items-center justify-content-between">
-    <h1 class="text-light topic-text">Comments:</h1>
+    <h1 class="text-light">Comments:</h1>
     <%= link_to 'New comment', new_topic_reply_path(@topic), class:"btn btn-light" if user_signed_in? %>
-    <%# <a class="btn btn-light" href="/replies/new"> New comment</a> %>
     <% @topic.replies.each do |reply| %>
   </div>
-  <div class="topic-topic topic-text m-5 p-4">
+  <div class="topic-topic  m-5 p-4">
       Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
-      <strong class="topic-text"><%= reply.user.nickname%></p></strong><h4 class="topic-text"><%= reply.content %></h4>
+      <strong><%= reply.user.nickname%></p></strong><h4><%= reply.content %></h4>
       <% if current_user && reply.user == current_user  %>
         <br/><%= link_to reply_path(reply), data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
         Delete<i class="fa-regular fa-trash-can"></i>
