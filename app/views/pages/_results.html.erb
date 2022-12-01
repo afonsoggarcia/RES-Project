@@ -1,0 +1,12 @@
+<div class="container d-flex gap-5 my-3 shadow text-bg-secondary rounded py-2">
+  <div>
+  <p><strong>Straight line distance:</strong> <%= @rhumb_dist.round(3) %> Kilometers</p>
+  <p><strong>Great circle distance:</strong> <%= @great_circle.round(3) %> Kilometers</p>
+  </div>
+  <div class="d-flex align-items-center">
+    <h5>If you followed a straight line you would travel <strong><%= (@rhumb_dist.round(3) - @great_circle.round(3)).round(3) %></strong> kilometers more</h5>
+  </div>
+</div>
+<div class="container">
+    <p>** The greater the distance between the places, the more efficient it is to go in a great circle route</p>
+</div>

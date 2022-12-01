@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   def index
     skip_policy_scope
     @articles = Article.all
+    @believer = params[:believer] == "true"
   end
 
   def show
@@ -29,7 +30,7 @@ class ArticlesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
+
   private
 
   def set_article

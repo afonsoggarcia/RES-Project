@@ -7,6 +7,7 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.4"
 gem "pundit"
 gem "faker"
+gem "geocoder"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -79,7 +80,5 @@ group :test do
   gem "webdrivers"
 end
 
-#Cloudinary setup
-gem "dotenv-rails", groups: [:development, :test]
 #Cloudinary
 gem "cloudinary"
