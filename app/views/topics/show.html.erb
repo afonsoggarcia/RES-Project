@@ -1,26 +1,24 @@
 <%= render 'shared/navbar' %>
-  <div class="forum">
+<div class="forum">
   <div class=" header d-flex align-items-center justify-content-between">
-  <h2 class="topic-text">RoundEarthForum</h2>
-  <%= link_to "Edit this topic", edit_topic_path(@topic), class:"btn btn btn-dark" %>
+    <h2 class="topic-text text-dark">RoundEarthForum</h2>
+    <%= link_to "Edit this topic", edit_topic_path(@topic), class:"bt btn btn-light text-light" %>
+    </div>
+  <div class="topic-topic m-5 p-4 text-center">
+    <h1 class="topic-text text-dark"> <%=@topic.title%> </h1>
+    <p class="topic-text text-dark"> <%=@topic.description%></p>
   </div>
-  <div class="m-5 p-4 text-center">
-  <h1> <%=@topic.title%> </h1>
-  <p> <%=@topic.description%></p>
+  <div class=" header-2 d-flex align-items-center justify-content-between">
+    <h1 class="text-light topic-text">Comments:</h1>
+    <a class="btn btn-light" href="<%=@topic.id%>/replies/new"> New comment</a>
+    <% @topic.replies.each do |reply| %>
   </div>
-  <div class="px-2">
-  <a class="btn btn btn-dark" href="<%=@topic.id%>/replies/new"> New comment</a>
-  </div>
-<hr>
-  <h4 class=" px-3">Comments:</h4>
-  <% @topic.replies.each do |reply| %>
-<div class="notification px-3">
-      <p>Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
-      <strong><%= @topic.user.nickname%></p></strong> <%= reply.content %>
-        <%= link_to reply_path(reply), data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
-        Delete<i class="fa-regular fa-trash-can"></i></p>
+  <div class="topic-topic topic-text m-5 p-4">
+      Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
+      <strong class="topic-text"><%= reply.user.nickname%></p></strong><h4 class="topic-text"><%= reply.content %></h4>
+        <br/><%= link_to reply_path(reply), data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
+        Delete<i class="fa-regular fa-trash-can"></i>
         <%end%>
-<hr>
-  </div>
         <%end%>
+        </div>
 </div>

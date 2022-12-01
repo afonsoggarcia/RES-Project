@@ -12,7 +12,8 @@
 
 .forum {
   font-family: 'Lato', sans-serif;
-  background: #EDEFF0;
+  background: #474f53;
+  padding-bottom: 10px;
  }
 
  .header {
@@ -22,10 +23,27 @@
  padding: 10px 60px 10px 60px;
  }
 
+ .header-2 {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 60px 10px 60px;
+  }
 
-.card-topic {
-  font-family: 'Lato', sans-serif;
-  background: #EDEFF0;
+.topic-topic {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.notification {
+  margin-bottom: 8px;
+  background: white;
+  padding: 8px 16px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.notification .notification-content {
+  flex-grow: 1;
+  padding: 0 24px;
 }
 
 // Smallest device
