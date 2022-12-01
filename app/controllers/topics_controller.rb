@@ -11,8 +11,8 @@ class TopicsController < ApplicationController
   end
 
   def new
-    skip_authorization
     @topic = Topic.new
+    authorize @topic
   end
 
   def create

@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show destroy edit update]
   skip_before_action :authenticate_user!, only: %i[home index show]
+
   def index
     skip_policy_scope
     @articles = Article.all
