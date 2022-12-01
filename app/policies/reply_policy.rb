@@ -1,7 +1,7 @@
-class ArticlePolicy < ApplicationPolicy
+class ReplyPolicy < ApplicationPolicy
 
   def create?
-    user.publisher || user.admin
+    true
   end
 
   def update?
@@ -9,10 +9,13 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin
+    record.user == user || user.admin
   end
 
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
+    # def resolve
+    #   scope.all
+    # end
   end
 end
