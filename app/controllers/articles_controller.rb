@@ -29,17 +29,7 @@ class ArticlesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
-  def dash_index
-    @articles = Article.where(accepted: false)
-    @articles = policy_scope(Article)
-  end
-
-  def publisher_index
-    @articles = Article.where(user: current_user)
-    @articles = policy_scope(Article)
-  end
-
+  
   private
 
   def set_article

@@ -1,7 +1,9 @@
 <div class="dash" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cff2.earth.com/uploads/2021/04/10114409/earth-1756274_1920-960x640.jpg);">
   <h1 class="text-center">Hey there <%= current_user.nickname %>, <%= current_user.believer ? 'Round-earther' : 'Flat-earther' %></h1>
   <p class="text-center">This is your <%= render 'user_type' %> panel</p>
-  <div class="container border border-white" data-dashboard-target="content">
-    <p>Hello</p>
+  <div class="container">
+  <%= turbo_frame_tag 'content' do %>
+    <%= render 'news' %>
+  <% end %>
   </div>
 </div>
