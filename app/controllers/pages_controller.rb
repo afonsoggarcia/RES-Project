@@ -13,7 +13,6 @@ class PagesController < ApplicationController
 
   def dashboard
     current_user.admin ? @articles = Article.where(accepted: false) : @articles = Article.where(user: current_user)
-    @articles = policy_scope(Article)
 
     respond_to do |format|
       if turbo_frame_request? && turbo_frame_request_id == 'content'
