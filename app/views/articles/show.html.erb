@@ -1,14 +1,23 @@
 <%= render 'shared/navbar' %>
-<div class="container mt-5 ">
-  <div class="cards-grid-test">
-    <div class="card-test">
-        <h2><%= @article.title %></h2>
-        <%= cl_image_tag @article.photo.key, height: 1920, width: 1080, crop: :limit if @article.photo.attached? %>
-      <div class="card-test-infos">
-        <div>
+<div class="container">
+      <h2 class="article-title"><%= @article.title %></h2>
+  <div class="article-grid">
+    <div class="social-icons">
+      <i class="fa-brands fa-facebook"></i>
+      <i class="fa-brands fa-instagram"></i>
+      <i class="fa-brands fa-twitter"></i>
+    </div>
+    <div class="article-image">
+      <%= cl_image_tag @article.photo.key, height: 1920, width: 1080, crop: :limit if @article.photo.attached? %>
+      <div>
+        <div class="article-text">
           <p><%= @article.rich_body %></p>
         </div>
       </div>
+    </div>
+    <div class="social-icons">
+      <i class="fa-solid fa-heart"></i>
+      <i class="fa-solid fa-eye"></i>
     </div>
   </div>
 </div>
