@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "features", to: "pages#features"
   get "dashboard", to: "pages#dashboard"
   get 'content', to: "pages#content"
+  get "calculator", to: "pages#calculator"
+  get "distance", to: 'pages#distance'
   resources :articles
   resources :topics do
     resources :replies, only: [:new, :create]

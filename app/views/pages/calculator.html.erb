@@ -1,0 +1,6 @@
+<%= render 'shared/navbar' %>
+<div class="calculator">
+  <%= render 'calculate' %>
+  <%= render 'results' if @rhumb_dist %>
+  <embed type="text/html" src="distance.html" width="100%" height="600px">
+</div>
