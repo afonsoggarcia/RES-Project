@@ -6,7 +6,7 @@
       <br>
     </div>
     <div class="cards-article">
-      <% @articles.each do |article|%>
+      <% @articles.sample(4).each do |article|%>
         <div class="card-trip">
           <%= cl_image_tag article.photo.key, :width => 1920, :height => 1080, crop: :limit if article.photo.attached? %>
           <div class="card-trip-infos">
