@@ -3,6 +3,7 @@
   <p class="text-center">This is your <%= render 'user_type' %> panel</p>
   <div class="container">
   <%= turbo_frame_tag 'content' do %>
+    <%= render 'news' %>
   <% end %>
   </div>
 </div>
