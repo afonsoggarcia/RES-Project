@@ -1,5 +1,5 @@
 <div class="mb-3 d-flex justify-content-between px-3">
-  <h1 class="title">This is your distance calculator</h1>
+  <h1 class="title">This is your distance calculator </h1>
   <div class="d-flex align-items-center gap-2 p-2" data-controller="address-autocomplete" data-address-autocomplete-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     <%= form_with url: calculator_path, method: :get do %>
       <%= text_field_tag :pointa,
