@@ -5,7 +5,9 @@
         <p class="ml13">Challenging assumptions and pursuing truth</p>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     </div>
-    <%= link_to "Believer", articles_path(believer: true), class: "btn btn-bk fw-bold fs-5 me-2 py-2 px-4 mt-2" %>
-    <%= link_to "Non-believer", articles_path(believer: false), class: "btn btn-ghost fw-bold fs-5 me-2 py-2 px-4 mt-2" %>
+    <div class="btn-group" role="group" aria-label="Basic example">
+    <%= link_to "Believer", articles_path(believer: true), class: "btn  btn-bk" %>
+    <%= link_to "Non-believer", articles_path(believer: false),  class: "btn  btn-bk" %>
+    </div>
   </div>
 </div>
