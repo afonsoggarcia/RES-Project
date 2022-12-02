@@ -1,17 +1,15 @@
-<div class="back-articles" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80);">
-  <div class="container">
+<div class="back-articles bg-dark" >
+  <div class="container bg-dark">
     <div>
       <% if @believer %>
         <h1 class="article-text-style">Welcome Believer</h1>
-        <h4 class="article-subtitle-style">The Earth is very pleased to have you as a member of our community. Make yourself at home... Here, you'll be able to access the latest news, discuss with friends and, of course, share our articles with people you know.</h3>
+        <h4 class="article-subtitle-style">The Earth is very pleased to have you as a member of our community. Make yourself at home... Here, you'll be able to access the latest news, discuss with friends and, of course, share our articles with people you know.</h4>
       <% elsif @believer.nil? %>
         <h1 class="article-text-style">Articles List</h1>
-        <br>
-        <br>
-        <br>
+        <h4 class="article-subtitle-style">It's great to have you with us, make yourself at home... Here, you'll be able to access the latest news and share our articles with people you know.</h4>
       <% else %>
         <h1 class="article-text-style">Welcome Non-believer</h1>
-        <h4 class="article-subtitle-style">Well... it's great to have you with us! We hope to spin and crack your old square beliefs! Here, you'll be able to access the latest news, discuss with friends and, of course, share our articles with people you know.</h3>
+        <h4 class="article-subtitle-style">Well... it's great to have you with us! We hope to spin and crack your old square beliefs! Here, you'll be able to access the latest news, discuss with friends and, of course, share our articles with people you know.</h4>
       <% end %>
       <br>
       <br>
