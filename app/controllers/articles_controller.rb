@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
     @category = Category.find(params[:article][:category])
     @article = Article.new(article_params)
     @article.category = @category
+    @article.user = current_user
     authorize @article
     if @article.save
       redirect_to article_path(@article), notice: "Article successfully created!"
