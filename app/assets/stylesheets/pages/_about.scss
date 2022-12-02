@@ -1,13 +1,22 @@
 .about {
   background-color: rgb(109, 108, 108);
-  opacity: 0.7;
+  opacity: 0.8;
   padding: 24px;
   border-radius: 5px;
 
 }
 
 .about p {
-  color: #ffffff;
+  color: rgb(231, 226, 210);
   font-family: helvetica;
-  font-weight: 100;
+  // font-weight: 100;
+}
+
+.about-title {
+  font-size: 72px;
+  font-family: Inter;
+  color: rgb(231, 226, 210);
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid rgb(231, 226, 210);
 }
