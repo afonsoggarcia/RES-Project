@@ -38,14 +38,14 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     authorize @topic
     @topic.destroy
-    redirect_to topics_url, notice: "Topic was successfully destroyed."
+    redirect_to topics_url, notice: "Topic successfully destroyed."
   end
 
   def update
     @topic = Topic.find(params[:id])
     authorize @topic
     if @topic.update(topic_params)
-      redirect_to @topic, notice: "topic was successfully updated."
+      redirect_to @topic, notice: "Topic successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

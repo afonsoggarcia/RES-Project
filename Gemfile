@@ -82,3 +82,6 @@ end
 
 #Cloudinary
 gem "cloudinary"
+
+#Vips
+gem "ruby-vips"

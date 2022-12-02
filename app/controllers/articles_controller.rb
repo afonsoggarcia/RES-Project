@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
     @category = Category.find(params[:article][:category])
     @article = Article.new(article_params)
     @article.category = @category
+    @article.user = current_user
     authorize @article
     if @article.save
       redirect_to article_path(@article), notice: "Article successfully created!"
@@ -42,7 +43,7 @@ class ArticlesController < ApplicationController
     @article.accepted = false
     authorize @article
     if @article.update(article_params)
-      redirect_to @article, notice: "article was successfully updated."
+      redirect_to @article, notice: "Article was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

@@ -22,7 +22,7 @@ class RepliesController < ApplicationController
     @reply.topic = topic
     @reply.user = current_user
     if @reply.save
-      redirect_to topic_path(topic), notice: 'reply was successfully created.'
+      redirect_to topic_path(topic), notice: 'Reply successfully created.'
     else
       render :new, status: :unprocessable_entity
     end

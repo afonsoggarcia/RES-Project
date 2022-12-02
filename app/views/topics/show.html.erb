@@ -26,8 +26,10 @@
       Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
       <strong><%= reply.user.nickname%></p></strong><h4><%= reply.content %></h4>
       <% if current_user && reply.user == current_user  %>
+
         <br/><%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
         Delete <i class="fa-regular fa-trash-can"></i>
+
         <% end %>
         <% end %>
         </div>
