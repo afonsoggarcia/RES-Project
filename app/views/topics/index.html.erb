@@ -2,7 +2,10 @@
 <div class="forum">
   <div class=" header d-flex align-items-center justify-content-between">
      <h2 class=" text-dark">RoundEarthForum</h2>
-     <%= link_to 'New Post', new_topic_path, class:"bt btn btn-light text-light" if current_user %>
+      <a class=" bt text-light btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Post</a>
+  </div>
+  <div class="collapse" id="collapseExample">
+  <%= render"form" %>
   </div>
   <% @topics.each do |topic| %>
     <div class="cards m-5 p-4 text-center">

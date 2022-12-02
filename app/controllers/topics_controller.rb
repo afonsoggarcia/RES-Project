@@ -3,6 +3,7 @@ class TopicsController < ApplicationController
   def index
     skip_policy_scope
     @topics = Topic.all.order("created_at DESC")
+    @topic = Topic.new
   end
 
   def show
