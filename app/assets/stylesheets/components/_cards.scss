@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 16px;
-  height: 150px;
+  height: 180px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   background: white;
 }
@@ -27,9 +27,14 @@
   padding: 10px 60px 10px 60px;
   }
 
-.topic-topic {
+  .topic-topic {
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+.topic-topic-1 {
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  font-size: small;
 }
 
 .notification {

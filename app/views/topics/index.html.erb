@@ -15,6 +15,7 @@
       <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
       <h2 class=""> <%= topic.title%> </h2>
         <%end%>
+      <p class=""> <%= topic.replies.count%> Comment(s) </p>
     </div>
      <%end%>
 </div>
