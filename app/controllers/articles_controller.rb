@@ -4,8 +4,19 @@ class ArticlesController < ApplicationController
 
   def index
     skip_policy_scope
-    @articles = Article.all.first(4)
-    @articles = Article.all
+    if params[:query].present?
+      @articles = Article.where("title ILIKE ?", "%#{params[:query]}%")
+    else
+      @articles = Article.all.first(4)
+      @articles = Article.all
+    end
+    respond_to do |format|
+      if turbo_frame_request?
+        format.html { render partial: 'shared/list', locals: { articles: @articles } }
+      else
+        format.html
+      end
+    end
     @believer = params[:believer] == "true" if params[:believer]
   end
 

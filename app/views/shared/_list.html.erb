@@ -14,23 +14,25 @@
       <br>
       <br>
     </div>
-    <div class="cards-article-grid">
-      <% @articles.sample(4).each do |article|%>
-        <div class="card-article">
-       <% if article.photo.attached? %>
-          <%= cl_image_tag article.photo.key, :width => 1920, :height => 1080, crop: :limit %>
-        <% else %>
-          <%= image_tag 'astronauta.jpg', style:"width = 1920; height = 1080;" %>
-        <% end %>
-          <div class="card-article-infos">
-            <div>
-            <h4><%= article.title %></h4>
-              <p><%= article.subtitle %></p>
-            </div>
+    <%= turbo_frame_tag 'search' do %>
+      <div class="cards-article-grid">
+        <% articles.sample(4).each do |article|%>
+          <div class="card-article">
+            <% if article.photo.attached? %>
+              <%= cl_image_tag article.photo.key, :width => 1920, :height => 1080, crop: :limit %>
+            <% else %>
+              <%= image_tag 'astronauta.jpg', style:"width = 1920; height = 1080;" %>
+            <% end %>
+            <div class="card-article-infos">
+              <div>
+                <h4><%= article.title %></h4>
+                <p><%= article.subtitle %></p>
+              </div>
               <a href="/articles/<%=article.id%>" class="btn-flat card-article-user">Read More...</a>
+            </div>
           </div>
-        </div>
-      <%end%>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
