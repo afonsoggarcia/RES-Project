@@ -17,7 +17,7 @@ neil = User.create(first_name: 'Neil', last_name: 'Degrasse', nickname: 'Mr. Deg
                    description: 'Born October 5, 1958 I am an American astrophysicist, author, and science communicator.
                                  I studied at Harvard University, the University of Texas at Austin, and Columbia
                                  University.')
-bibi = User.create(first_name: 'Gabriela', last_name: 'Balais', nickname: 'Bibi Balais', email: 'bibi@science.com',
+bibi = User.create(first_name: 'Gabriela', last_name: 'Bailas', nickname: 'Bibi Bailas', email: 'bibi@science.com',
                    password: '123123', believer: true, publisher: true,
                    description: 'Divulgadora científica, Fisica de particulas e amante de pokemon. Cientista brasileira
                                 graduada em física e PhD em física teórica de partículas. Atualmente, reside e trabalha

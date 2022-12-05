@@ -6,6 +6,8 @@ class PagesController < ApplicationController
   end
 
   def about
+    skip_policy_scope
+    @publishers = User.where(publisher: true)
   end
 
   def features
