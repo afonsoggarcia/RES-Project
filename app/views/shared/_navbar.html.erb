@@ -20,14 +20,23 @@
             <a class="nav-link" aria-current="page" href="/features">FEATURES</a>
           </li>
         </li>
-        <form class="d-flex">
-          <input class="form-control" type="search" placeholder="Search Articles..." aria-label="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">
-              <i class="fas fa-search text-muted"></i>
-            </button>
-          </span>
-        </form>
+          <%= form_with url: articles_path,
+                        method: :get,
+                        class: "d-flex",
+                        data: {turbo_frame: 'search', controller: 'search'} do |f| %>
+            <%= f.text_field :query,
+                            value: params[:query],
+                            class: "form-control",
+                            type: "search",
+                            placeholder: "Search Articles...",
+                            label: "Search",
+                            data: {action: 'keyup->search#perform'} %>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+                <i class="fas fa-search text-muted"></i>
+              </button>
+            </span>
+          <% end %>
       </ul>
       <ul class="navbar-nav">
         <% if user_signed_in? %>
