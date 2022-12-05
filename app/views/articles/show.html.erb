@@ -1,6 +1,6 @@
 <%= render 'shared/navbar' %>
 <div class="container">
-      <h2 class="article-title"><%= @article.title %></h2>
+  <h2 class="article-title"><%= @article.title %></h2>
   <div class="article-grid">
     <div class="social-icons">
       <i class="fa-brands fa-facebook"></i>
@@ -16,8 +16,17 @@
       </div>
     </div>
     <div class="social-icons">
-      <i class="fa-solid fa-heart"></i>
-      <i class="fa-solid fa-eye"></i>
+      <% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
+      <% if pre_like %>
+        <%= button_to(article_like_path(@article, pre_like), method: :delete, class: "btn bg-btn pull-right") do %>
+        <span class= "fa-solid fa-heart fa-lg icon-heart"><span>
+        <% end %>
+      <% else %>
+          <%= button_to(article_likes_path(@article), method: :post, class: "btn bg-btn pull-right") do %>
+          <span class= "fa-solid fa-heart fa-lg icon-heart-off"><span>
+          <% end %>
+      <% end %>
+      <p class="btn btn-dark d-block w-100"><%= @article.likes.count %></p>
+      </div>
     </div>
   </div>
-</div>

@@ -2,7 +2,7 @@
   <div class="container justify-content-center">
     <h1 class="about-title pb-3 mb-3 ">A 4.54 billion years old tradition</h1>
     <br>
-    </div>
+  </div>
   <div class="container about justify-content-center">
     <p>Since then, <em> Round Earth Society</em> has been challenging assumptions and pursuing truth.</p>
     <p>When the founders of <em>Round Earth Society</em> gathered in São Paulo in the spring of 2022, during Le Wagon Bootcamp, they wanted to create a website that would be indispensable for the kind of reader who was deeply engaged with the most consequential issues of the Earth. The men and women who created this website had an overarching, prophetic vision—they were fierce opponents of flat earth society—but they were also moved to overcome what they saw as the limits of denialism, believing that the free exchange of ideas across ideological lines was crucial to the great Humanity experiment. Their goal was to publish the most urgent essays, the most vital literature; they wanted to pursue truth and disrupt nonsense without regard for the number of likes.</p>
@@ -10,3 +10,23 @@
     <p>We will deal frankly with everyone, not rank ourselves with any sect of anties, but with that body of men which is in favor of the truth.</p>
   </div>
   <br>
+  <div class="container about justify-content-center">
+    <h2>Our publishers:</h2>
+    <div class="cards-article-grid">
+      <% @publishers.each do |publisher|%>
+        <div class="card-article">
+          <% if publisher.photo.attached? %>
+            <%= cl_image_tag publisher.photo.key, :width => 1920, :height => 1080, crop: :limit %>
+          <% else %>
+            <%= image_tag 'astronauta.jpg', style:"width = 1920; height = 1080;" %>
+          <% end %>
+          <div class="card-article-infos">
+            <h4><%= publisher.first_name %></h4>
+            <h4><%= publisher.last_name %></h4>
+            <p><%= publisher.description %></p>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>

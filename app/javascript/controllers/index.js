@@ -4,11 +4,11 @@
 
 import { application } from "./application"
 
-import CommentController from "./comment_controller"
-application.register("comment", CommentController)
-
 import DashboardController from "./dashboard_controller"
 application.register("dashboard", DashboardController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import SearchController from "./search_controller"
+application.register("search", SearchController)
