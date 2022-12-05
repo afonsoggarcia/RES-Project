@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'content', to: "pages#content"
   get "calculator", to: "pages#calculator"
   get "distance", to: 'pages#distance'
-  resources :articles
+  resources :articles do
+    resources :likes
+  end
   resources :topics do
     resources :replies, only: [:new, :create]
   end
