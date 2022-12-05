@@ -10,6 +10,7 @@ class TopicsController < ApplicationController
     skip_authorization
     @topic = Topic.find(params[:id])
     @reply = Reply.new
+    @comment = Comment.new
   end
 
   def new

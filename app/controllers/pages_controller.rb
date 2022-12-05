@@ -86,4 +86,5 @@ class PagesController < ApplicationController
       (long_b - long_a) > 180 ? (180 - long_b) + (180 + long_a) : long_b - long_a
     end
   end
+
 end

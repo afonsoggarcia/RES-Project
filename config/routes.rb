@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get "distance", to: 'pages#distance'
   resources :articles
   resources :topics do
-    resources :replies, only: [:new, :create]
+    resources :replies, only: [:new, :create] do
+      resources :comments, only: [:new, :create]
+    end
   end
   resources :replies, only: [:destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

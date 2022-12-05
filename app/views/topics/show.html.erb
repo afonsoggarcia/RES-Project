@@ -12,7 +12,7 @@
 
   <div class="topic-topic m-5 p-4 text-center">
     <h1 class="text-dark"> <%=@topic.title%> </h1>
-    <p class="text-dark"> <%=@topic.description%></p>
+    <h5 class="text-dark"> <%=@topic.description%></h5>
   </div>
 
   <div class="header-2 d-flex align-items-center justify-content-between">
@@ -22,22 +22,31 @@
 
   <div class="px-5 text-center">
   <div class="collapse" id="collapseExample">
-    <%= render"form_reply" %>
+  <%= render"form_reply" %>
   </div>
   </div>
 
 
   <% @topic.replies.reverse.each do |reply| %>
-  <div class="topic-topic m-5 p-4">
+  <div class="topic-topic-1 m-5 p-4 text-dark">
       Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
-      <strong><%= reply.user.nickname%></p></strong><h4><%= reply.content %></h4>
+      <strong><%= reply.user.nickname%></p></strong><h3><%= reply.content %></h3>
       <% if current_user && reply.user == current_user  %>
-
         <br/><%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
         Delete <i class="fa-regular fa-trash-can"></i>
+    <% end %>
+      <% reply.comments.reverse.each do |comment| %>
+       <div class=" m-3 px-5">
+       <hr>
+        Published <%=time_ago_in_words(comment.created_at)%> ago, sent by:
+      <strong><%= comment.user.nickname%></p></strong><h4><%= comment.content %></h4>
+      <% if current_user && comment.user == current_user  %>
+            <% end %>
+    </div>
 
         <% end %>
     <% end %>
+      <%= render"form_comment", reply: reply%>
   </div>
     <%end%>
 </div>
