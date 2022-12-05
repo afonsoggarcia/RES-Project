@@ -40,6 +40,7 @@ class PagesController < ApplicationController
   def admin_info
     @articles = Article.where(accepted: false)
     @topics = Topic.joins(:replies).all.order('replies.created_at DESC').uniq
+    @publishers = User.where(publisher: true)
   end
 
   def latlong(address)
