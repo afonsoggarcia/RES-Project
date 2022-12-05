@@ -1,10 +1,11 @@
 <%= render 'shared/navbar' %>
-<div class="forum">
+<div class="forum bg-dark">
   <div class=" header d-flex align-items-center justify-content-between">
      <h2 class=" text-dark">RoundEarthForum</h2>
-      <a class=" bt text-light btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Post</a>
+      <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Post</a>
   </div>
-  <div class="collapse" id="collapseExample">
+<div class="container">
+  <div class="collapse mx-5" id="collapseExample">
   <%= render"form" %>
   </div>
   <% @topics.each do |topic| %>
@@ -16,4 +17,5 @@
         <%end%>
     </div>
      <%end%>
+</div>
 </div>
