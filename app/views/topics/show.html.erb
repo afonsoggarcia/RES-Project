@@ -26,8 +26,8 @@
   </div>
   </div>
 
-  <% @topic.replies.reverse.each do |reply| %>
 
+  <% @topic.replies.reverse.each do |reply| %>
   <div class="topic-topic m-5 p-4">
       Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
       <strong><%= reply.user.nickname%></p></strong><h4><%= reply.content %></h4>
@@ -37,7 +37,7 @@
         Delete <i class="fa-regular fa-trash-can"></i>
 
         <% end %>
-        <% end %>
+    <% end %>
   </div>
     <%end%>
 </div>
