@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_174831) do
+
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_182436) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +75,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_174831) do
     t.datetime "updated_at", null: false
   end
 
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.bigint "reply_id", null: false
@@ -81,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_174831) do
     t.bigint "user_id", null: false
     t.index ["reply_id"], name: "index_comments_on_reply_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+
   end
 
   create_table "likes", force: :cascade do |t|
@@ -90,6 +99,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_174831) do
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_likes_on_article_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -139,6 +158,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_174831) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "articles"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "replies", "topics"
   add_foreign_key "replies", "users"
   add_foreign_key "topics", "users"
