@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'content', to: "pages#content"
   get "calculator", to: "pages#calculator"
   get "distance", to: 'pages#distance'
+  get "converted", to: 'pages#converted'
   resources :articles do
     resources :likes
   end

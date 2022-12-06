@@ -39,6 +39,7 @@
           <% end %>
       </ul>
       <ul class="navbar-nav">
+        <%= render 'shared/converted_counter' %>
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to current_user.nickname, "/dashboard", class: "nav-link active", target:'_blank' %>
