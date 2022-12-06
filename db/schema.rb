@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
+
 ActiveRecord::Schema[7.0].define(version: 2022_12_05_182436) do
 
   # These are extensions that must be enabled in order to support this database
@@ -76,11 +77,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_182436) do
   end
 
 
+
   create_table "chatrooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
+  end
+  
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.bigint "reply_id", null: false
@@ -89,7 +92,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_182436) do
     t.bigint "user_id", null: false
     t.index ["reply_id"], name: "index_comments_on_reply_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-
   end
 
   create_table "likes", force: :cascade do |t|

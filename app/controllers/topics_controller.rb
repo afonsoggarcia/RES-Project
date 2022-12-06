@@ -4,6 +4,12 @@ class TopicsController < ApplicationController
     skip_policy_scope
     @topics = Topic.all.order("created_at DESC")
     @topic = Topic.new
+      if params[:query].present?
+        @topics = Topic.where("title ILIKE ?", "%#{params[:query]}%")
+      else
+        @topics = Topic.all.first(4)
+        @topics = Topic.all
+      end
   end
 
   def show
