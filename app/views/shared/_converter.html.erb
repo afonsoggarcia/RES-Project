@@ -1,0 +1,5 @@
+<% if current_user && !current_user.believer %>
+  <div class="alert-converted">
+    <%= link_to 'I give up, earth is ROUND', converted_path, class:'btn btn-primary rounded-pill' %>
+  </div>
+<% end %>
