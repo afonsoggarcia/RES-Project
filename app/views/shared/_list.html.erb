@@ -15,24 +15,54 @@
       <br>
     </div>
     <%= turbo_frame_tag 'search' do %>
-      <div class="cards-article-grid">
-        <% articles.sample(4).each do |article|%>
-          <div class="card-article">
-            <% if article.photo.attached? %>
-              <%= cl_image_tag article.photo.key, :width => 1920, :height => 1080, crop: :limit %>
-            <% else %>
-              <%= image_tag 'astronauta.jpg', style:"width = 1920; height = 1080;" %>
-            <% end %>
-            <div class="card-article-infos">
-              <div>
-                <h4><%= article.title %></h4>
-                <p><%= article.subtitle %></p>
+      <div class="row mx-auto my-auto justify-content-center arrow-wrapper">
+        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner" role="listbox">
+            <% articles``.each_with_index do |article, index|%>
+              <div class="carousel-item <%="active"if index.zero? %>">
+                <div class="col-md-3">
+                  <div class="card-article p-2">
+                    <% if article.photo.attached? %>
+                      <%= cl_image_tag article.photo.key, :width => 1920, :height => 1080, crop: :limit %>
+                    <% else %>
+                      <%= image_tag 'astronauta.jpg', style:"width = 1920; height = 1080;" %>
+                    <% end %>
+                    <div class="card-article-infos">
+                      <div>
+                        <h4><%= article.title %></h4>
+                        <p><%= article.subtitle %></p>
+                      </div>
+                      <a href="/articles/<%=article.id%>" class="btn-flat card-article-user">Read More...</a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <a href="/articles/<%=article.id%>" class="btn-flat card-article-user">Read More...</a>
-            </div>
+            <%end%>
           </div>
-        <% end %>
+        </div>
+        <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
       </div>
     <% end %>
   </div>
 </div>
+<script>
+  let items = document.querySelectorAll('.carousel .carousel-item')
+  items.forEach((el) => {
+      const minPerSlide = 4
+      let next = el.nextElementSibling
+      for (var i=1; i<minPerSlide; i++) {
+          if (!next) {
+              // wrap carousel by using first child
+          	next = items[0]
+        	}
+          let cloneChild = next.cloneNode(true)
+          el.appendChild(cloneChild.children[0])
+          next = next.nextElementSibling
+      }
+  })
+</script>
