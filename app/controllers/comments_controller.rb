@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-
-  skip_before_action :authenticate_user!, only: %i[home index show destroy update]
+  before_action :set_comment, only: %i[show destroy edit update]
+  skip_before_action :authenticate_user!, only: %i[home index show]
 
   def index
     skip_policy_scope
@@ -12,19 +12,19 @@ class CommentsController < ApplicationController
   end
 
   def new
-    skip_authorization
     @topic = Topic.find(params[:topic_id])
     @reply = Reply.find(params[:reply_id])
     @comment = Comment.new
+    authorize @comment
   end
 
   def create
-    skip_authorization
     topic = Topic.find(params[:topic_id])
     reply = Reply.find(params[:reply_id])
     @comment = Comment.create(comment_params)
     @comment.reply = reply
     @comment.user = current_user
+    authorize @comment
     if @comment.save
       redirect_to topic_path(topic)
     else
@@ -34,13 +34,13 @@ class CommentsController < ApplicationController
 
 
   def edit
-    skip_authorization
     @comment = Comment.find(params[:id])
+    authorize @comment
   end
 
   def update
-    skip_authorization
     @comment = Comment.find(params[:id])
+    authorize @comment
     if @comment.update(comment_params)
       redirect_to @comment, notice: "comment successfully updated."
     else
@@ -49,14 +49,17 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    skip_authorization
     @comment = Comment.find(params[:id])
     @comment.destroy
+    authorize @comment
     redirect_to reply_path(@comment.reply), status: :see_other
   end
 
-
   private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:content)
