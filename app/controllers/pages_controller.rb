@@ -10,7 +10,14 @@ class PagesController < ApplicationController
     @publishers = User.where(publisher: true)
   end
 
+  def converted
+    convert_user
+  end
+
   def features
+  end
+
+  def chatrooms
   end
 
   def dashboard
@@ -33,6 +40,13 @@ class PagesController < ApplicationController
     point_b = latlong(params[:pointb])
     @great_circle = calculate_gc(point_a, point_b)
     @rhumb_dist = calculate_rhumb(point_a, point_b)
+  end
+
+  def convert_user
+    user = current_user
+    user.converted = true
+    user.believer = true
+    user.save
   end
 
   def distance; end

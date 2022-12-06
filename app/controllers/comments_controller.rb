@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
+
   skip_before_action :authenticate_user!, only: %i[home index show destroy update]
+
   def index
     skip_policy_scope
     @comments = Comment.all.order("created_at DESC")
@@ -30,6 +32,7 @@ class CommentsController < ApplicationController
     end
   end
 
+
   def edit
     skip_authorization
     @comment = Comment.find(params[:id])
@@ -51,6 +54,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     redirect_to reply_path(@comment.reply), status: :see_other
   end
+
 
   private
 
