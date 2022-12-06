@@ -14,7 +14,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    current_user.admin ? @articles = Article.where(accepted: false) : @articles = Article.where(user: current_user)
+    current_user.admin ? admin_info : @articles = Article.where(user: current_user)
 
     respond_to do |format|
       if turbo_frame_request? && turbo_frame_request_id == 'content'
@@ -38,6 +38,12 @@ class PagesController < ApplicationController
   def distance; end
 
   private
+
+  def admin_info
+    @articles = Article.where(accepted: false)
+    @topics = Topic.joins(:replies).all.order('replies.created_at DESC').uniq
+    @publishers = User.where(publisher: true)
+  end
 
   def latlong(address)
     Geocoder.search(address).first.coordinates
