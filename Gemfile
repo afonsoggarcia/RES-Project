@@ -85,3 +85,5 @@ gem "cloudinary"
 
 #Vips
 gem "ruby-vips"
+
+gem "jquery-rails"
