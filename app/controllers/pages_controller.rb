@@ -22,6 +22,7 @@ class PagesController < ApplicationController
 
   def dashboard
     current_user.admin ? admin_info : @articles = Article.where(user: current_user)
+    @publishers = User.where(publisher: true)
 
     respond_to do |format|
       if turbo_frame_request? && turbo_frame_request_id == 'content'
