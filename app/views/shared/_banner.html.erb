@@ -2,8 +2,7 @@
   <div class="container">
     <div>
       <h1 class="banner-text-style" >Round Earth Society</h1>
-        <p class="ml13">Challenging assumptions and pursuing truth</p>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+        <p data-controller="banner" class="animejs">Challenging assumptions and pursuing truth</p>
     </div>
     <div class="btn-group" role="group" aria-label="Basic example">
     <%= link_to "Believer", articles_path(believer: true), class: "btn  btn-bk" %>

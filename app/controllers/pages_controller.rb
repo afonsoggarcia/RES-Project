@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   end
 
   def converted
-    convert_user
+    convert_user unless current_user.believer
   end
 
   def features
