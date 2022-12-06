@@ -18,7 +18,7 @@
       <div class="row mx-auto my-auto justify-content-center arrow-wrapper">
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner" role="listbox">
-            <% articles``.each_with_index do |article, index|%>
+            <% articles.each_with_index do |article, index|%>
               <div class="carousel-item <%="active"if index.zero? %>">
                 <div class="col-md-3">
                   <div class="card-article p-2">
