@@ -35,25 +35,25 @@
       <% if current_user && reply.user == current_user  %>
         <br/><%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
         Delete <i class="fa-regular fa-trash-can"></i>
-    <% end %>
+        <% end %>
+      <% end %>
       <% reply.comments.reverse.each do |comment| %>
        <div class=" m-3 px-5">
        <hr>
         Published <%=time_ago_in_words(comment.created_at)%> ago, sent by:
-      <strong><%= comment.user.nickname%></p></strong><h5><%= comment.content %></h5>
-      <% if current_user && comment.user == current_user  %>
-              <br/><%= link_to comment_path(comment), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-        Delete <i class="fa-regular fa-trash-can"></i>
+        <strong><%= comment.user.nickname%></p></strong><h5><%= comment.content %></h5>
+        <% if current_user && comment.user == current_user  %>
+          <br/><%= link_to comment_path(comment), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+          Delete <i class="fa-regular fa-trash-can"></i>
         <%end%>
 
-            <% end %>
-    </div>
+      <% end %>
+        </div>
 
         <% end %>
-    <% end %>
              <hr>
       <%= render"form_comment", reply: reply%>
-  </div>
     <%end%>
+  </div>
 </div>
 </div>
