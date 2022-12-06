@@ -8,7 +8,7 @@
   <div class="collapse mx-5" id="collapseExample">
   <%= render"form" %>
   </div>
-  <% @topics.reverse.each do |topic| %>
+  <% @topics.each do |topic| %>
     <div class="cards m-5 p-4 text-center">
       <div class=" d-flex justify-content-between">
       <div><p>Published <%=time_ago_in_words(topic.created_at)%> ago,
