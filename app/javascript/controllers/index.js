@@ -6,9 +6,14 @@ import { application } from "./application"
 
 import CarouselController from "./carousel_controller"
 application.register("carousel", CarouselController)
+import BannerController from "./banner_controller"
+application.register("banner", BannerController)
 
 import ChatroomSubscriptionController from "./chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
+
+import ConverterController from "./converter_controller"
+application.register("converter", ConverterController)
 
 import DashboardController from "./dashboard_controller"
 application.register("dashboard", DashboardController)
