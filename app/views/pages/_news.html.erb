@@ -1,7 +1,9 @@
   <%= turbo_frame_tag 'content' do %>
     <div class="container border border-white py-2 d-flex">
-      <h2 class="text-light" >You have <%= current_user.articles.count %> articles published</h2 >
-      <%= link_to 'Go to articles', dashboard_path(query: 'articles'), class:'btn btn-ghost mx-3' %>
+    <% if current_user.admin || current_user.publisher %>
+        <h2 class="text-light" >You have <%= current_user.articles.count %> articles published</h2 >
+        <%= link_to 'Go to articles', dashboard_path(query: 'articles'), class:'btn btn-ghost mx-3' %>
+    <% end %>
     </div>
     <div class="container border border-white py-2">
       <h2 class="text-light" > Here are all your topics in the forum:  </h2 >
