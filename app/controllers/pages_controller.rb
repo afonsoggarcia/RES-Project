@@ -13,6 +13,9 @@ class PagesController < ApplicationController
   def features
   end
 
+  def chatrooms
+  end
+
   def dashboard
     current_user.admin ? @articles = Article.where(accepted: false) : @articles = Article.where(user: current_user)
 
