@@ -1,5 +1,6 @@
 class RepliesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home index show destroy update]
+  before_action :set_reply, only: %i[show destroy edit update]
+  skip_before_action :authenticate_user!, only: %i[home index show]
   def index
     skip_policy_scope
     @replies = Reply.all.order("created_at DESC")
@@ -10,18 +11,18 @@ class RepliesController < ApplicationController
   end
 
   def new
-    skip_authorization
     @topic = Topic.find(params[:topic_id])
     @reply = Reply.new
     @comment = Comment.new
+    authorize @reply
   end
 
   def create
-    skip_authorization
     topic = Topic.find(params[:topic_id])
     @reply = Reply.create(reply_params)
     @reply.topic = topic
     @reply.user = current_user
+    authorize @reply
     if @reply.save
       redirect_to topic_path(topic)
     else
@@ -30,13 +31,13 @@ class RepliesController < ApplicationController
   end
 
   def edit
-    skip_authorization
     @reply = Reply.find(params[:id])
+    authorize @reply
   end
 
   def update
-    skip_authorization
     @reply = Reply.find(params[:id])
+    authorize @reply
     if @reply.update(reply_params)
       redirect_to @reply, notice: "reply successfully updated."
     else
@@ -45,13 +46,17 @@ class RepliesController < ApplicationController
   end
 
   def destroy
-    skip_authorization
     @reply = Reply.find(params[:id])
     @reply.destroy
+    authorize @reply
     redirect_to topic_path(@reply.topic), status: :see_other
   end
 
   private
+
+  def set_reply
+    @reply = Reply.find(params[:id])
+  end
 
   def reply_params
     params.require(:reply).permit(:content)

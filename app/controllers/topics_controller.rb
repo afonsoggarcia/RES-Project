@@ -1,15 +1,10 @@
 class TopicsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home index show destroy update]
+  before_action :set_topic, only: %i[show destroy edit update]
+  skip_before_action :authenticate_user!, only: %i[home index show]
   def index
     skip_policy_scope
     @topics = Topic.all.order("created_at DESC")
     @topic = Topic.new
-      if params[:query].present?
-        @topics = Topic.where("title ILIKE ?", "%#{params[:query]}%")
-      else
-        @topics = Topic.all.first(4)
-        @topics = Topic.all
-      end
   end
 
   def show
@@ -59,6 +54,10 @@ class TopicsController < ApplicationController
   end
 
   private
+
+  def set_topic
+    @topic = Topic.find(params[:id])
+  end
 
   def topic_params
     params.require(:topic).permit(:title, :description)
