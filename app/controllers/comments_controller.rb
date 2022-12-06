@@ -1,8 +1,8 @@
-class RepliesController < ApplicationController
+class CommentsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[home index show destroy]
   def index
     skip_policy_scope
-    @replies = Reply.all.order("created_at DESC")
+    @comments = Comment.all.order("created_at DESC")
   end
 
   def show
@@ -12,33 +12,27 @@ class RepliesController < ApplicationController
   def new
     skip_authorization
     @topic = Topic.find(params[:topic_id])
-    @reply = Reply.new
+    @reply = Reply.find(params[:reply_id])
     @comment = Comment.new
   end
 
   def create
     skip_authorization
     topic = Topic.find(params[:topic_id])
-    @reply = Reply.create(reply_params)
-    @reply.topic = topic
-    @reply.user = current_user
-    if @reply.save
+    reply = Reply.find(params[:reply_id])
+    @comment = Comment.create(comment_params)
+    @comment.reply = reply
+    @comment.user = current_user
+    if @comment.save
       redirect_to topic_path(topic)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def destroy
-    skip_authorization
-    @reply = Reply.find(params[:id])
-    @reply.destroy
-    redirect_to topic_path(@reply.topic), status: :see_other
-  end
-
   private
 
-  def reply_params
-    params.require(:reply).permit(:content)
+  def comment_params
+    params.require(:comment).permit(:content)
   end
 end

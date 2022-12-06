@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :likes
   end
   resources :topics do
-    resources :replies, only: [:new, :create]
+    resources :replies, only: [:new, :create] do
+      resources :comments, only: [:new, :create]
+    end
   end
   resources :replies, only: [:destroy]
   resources :chatrooms, only: :show do

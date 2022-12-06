@@ -1,14 +1,21 @@
   <%= turbo_frame_tag 'content' do %>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Publisher</p>
-    </div>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Hello</p>
-    </div>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Laura</p>
-    </div>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Bye</p>
-    </div>
+    <% @publishers.each do |publisher| %>
+      <div class="container border border-white mt-2 py-2">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h2 class='text-light'><%= publisher.nickname %></h2>
+            <p><%= publisher.first_name %> <%= publisher.last_name %></p>
+          </div>
+          <div>
+            <% if publisher.photo.attached? %>
+              <%= cl_image_tag publisher.photo.key, class: "avatar-large" %>
+            <% else %>
+              <%= image_tag "planetinha.png", class: "avatar-large" %>
+            <% end %>
+          </div>
+        </div>
+        <p><%= publisher.description %></p>
+        <p><%= publisher.email %></p>
+      </div>
+    <% end %>
   <% end %>
