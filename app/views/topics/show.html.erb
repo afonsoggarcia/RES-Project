@@ -2,7 +2,7 @@
 <div class="forum bg-dark">
     <div class=" header d-flex align-items-center justify-content-between">
     <h2 class="text-dark">RoundEarthForum</h2>
-    <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">Edit Post</a>
+    <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">Edit Topic</a>
     </div>
 
 <div class="container">
@@ -39,13 +39,17 @@
        <div class=" m-3 px-5">
        <hr>
         Published <%=time_ago_in_words(comment.created_at)%> ago, sent by:
-      <strong><%= comment.user.nickname%></p></strong><h4><%= comment.content %></h4>
+      <strong><%= comment.user.nickname%></p></strong><h5><%= comment.content %></h5>
       <% if current_user && comment.user == current_user  %>
+              <br/><%= link_to comment_path(comment), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are sure you?"} do %>
+        Delete <i class="fa-regular fa-trash-can"></i>
+        <%end%>
             <% end %>
     </div>
 
         <% end %>
     <% end %>
+             <hr>
       <%= render"form_comment", reply: reply%>
   </div>
     <%end%>
