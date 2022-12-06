@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "calculator", to: "pages#calculator"
   get "distance", to: 'pages#distance'
   get "converted", to: 'pages#converted'
+  get "chatrooms", to: 'pages#chatrooms'
   resources :articles do
     resources :likes
   end
@@ -17,6 +18,11 @@ Rails.application.routes.draw do
     end
   end
   resources :replies, only: [:destroy]
+  resources :comments, only: [:destroy]
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
