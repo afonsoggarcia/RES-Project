@@ -1,5 +1,5 @@
 class RepliesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home index show destroy]
+  skip_before_action :authenticate_user!, only: %i[home index show destroy update]
   def index
     skip_policy_scope
     @replies = Reply.all.order("created_at DESC")
@@ -26,6 +26,21 @@ class RepliesController < ApplicationController
       redirect_to topic_path(topic)
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    skip_authorization
+    @reply = Reply.find(params[:id])
+  end
+
+  def update
+    skip_authorization
+    @reply = Reply.find(params[:id])
+    if @reply.update(reply_params)
+      redirect_to @reply, notice: "reply successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

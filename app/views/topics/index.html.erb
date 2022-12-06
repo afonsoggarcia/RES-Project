@@ -8,14 +8,19 @@
   <div class="collapse mx-5" id="collapseExample">
   <%= render"form" %>
   </div>
-  <% @topics.each do |topic| %>
+  <% @topics.reverse.each do |topic| %>
     <div class="cards m-5 p-4 text-center">
-      <p>Published <%=time_ago_in_words(topic.created_at)%> ago,
-      sent by: <strong><%= topic.user.nickname%></p></strong>
+      <div class=" d-flex justify-content-between">
+      <div><p>Published <%=time_ago_in_words(topic.created_at)%> ago,
+      sent by: <strong><%= topic.user.nickname%></strong></div>
+      <div>
       <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
-      <h2 class=""> <%= topic.title%> </h2>
+      <%= topic.replies.count%> Comment(s)
+      <i class="fa-solid fa-comments"></i></p>
+      <%end%></div></div>
+      <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
+      <h1 class=""> <%= topic.title%> </h1>
         <%end%>
-      <p class=""> <%= topic.replies.count%> Comment(s) </p>
     </div>
      <%end%>
 </div>
