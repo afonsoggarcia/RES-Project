@@ -1,0 +1,111 @@
+// Timing
+$earthSpinDur: 20s;
+$moonOrbitDur: $earthSpinDur * 2;
+$moonSpinDur: $earthSpinDur * 27;
+// info: https://www.space.com/24871-does-the-moon-rotate.html
+
+// Colors
+$lb: rgb(194,228,250);
+$lbT: rgba(194,228,250,0);
+
+$b: rgba(40,120,240,0.5);
+$bT: rgba(40,120,240,0);
+
+$bk: rgb(0,0,0);
+$bkT: rgba(0,0,0,0);
+
+// Styles
+*, *:before, *:after {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+.body2 {
+	background: #000;
+	font-size: 16px;
+	height: 100vh;
+	transform-style: preserve-3d;
+	perspective: 600px;
+}
+.earth, .moon {
+	border-radius: 50%;
+	overflow: hidden;
+	z-index: 0;
+	&, &:before, &:after {
+		position: absolute;
+	}
+	&:before, &:after {
+		content: "";
+		display: block;
+		position: absolute;
+		height: 100%;
+	}
+	&:before {
+		border-radius: inherit;
+		width: 100%;
+		z-index: -1;
+	}
+	&:after {
+		background: {
+			size: auto 100%;
+			repeat: repeat-x;
+		};
+		width: 400%;
+		z-index: -2;
+	}
+}
+.earth {
+	top: calc(50% - 10em);
+	left: calc(50% - 10em);
+	width: 20em;
+	height: 20em;
+	will-change: transform;
+	&:before {
+		background-image:
+			radial-gradient(100% 125% at 40% 50%, $bkT 40%, $bk 50%),
+			radial-gradient(100% 100% at center, $bT 47%, $b 48.5%, $lb 50%)
+			;
+	}
+	&:after {
+		animation: textureSpin $earthSpinDur linear infinite;
+		background-image: url(https://i.ibb.co/tK45vHK/earth-texture.jpg);
+	}
+}
+.moon {
+	animation: moonOrbitX $moonOrbitDur ease-in-out infinite;
+	width: 4em;
+	height: 4em;
+	transform: translateZ(0) translateX(-15em);
+	&:before {
+		background-image: radial-gradient(100% 125% at 40% 50%, $bkT 40%, $bk 50%);
+		box-shadow: 0 0 0.5em inset;
+	}
+	&:after {
+		animation: textureSpin $moonSpinDur linear infinite reverse;
+		background-image: url(https://i.ibb.co/0DJQB6Y/moon-texture.jpg);
+	}
+	&-hitbox {
+		animation: moonOrbitZ $moonOrbitDur (-$moonOrbitDur/4) ease-in-out infinite;
+		position: absolute;
+		top: calc(50% - 2em);
+		left: calc(50% - 2em);
+		transform: translateZ(0);
+	}
+}
+
+// Animations
+@keyframes textureSpin {
+	from { transform: translateX(0) }
+	to { transform: translateX(-50%) }
+}
+@keyframes moonOrbitX {
+	from { transform: translateZ(0) translateX(-15em) }
+	50% { transform: translateZ(0) translateX(15em) }
+	50.01% { transform: translateZ(-1px) translateX(15em) }
+	to { transform: translateZ(-1px) translateX(-15em) }
+}
+@keyframes moonOrbitZ {
+	from, to { transform: translateZ(-15em) }
+	50% { transform: translateZ(15em) }
+}
