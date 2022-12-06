@@ -1,14 +1,16 @@
   <%= turbo_frame_tag 'content' do %>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>News</p>
+    <div class="container border border-white py-2 d-flex">
+      <h2 class="text-light" >You have <%= current_user.articles.count %> articles published</h2 >
+      <%= link_to 'Go to articles', dashboard_path(query: 'articles'), class:'btn btn-ghost mx-3' %>
     </div>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Hello</p>
-    </div>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Laura</p>
-    </div>
-    <div class="container border border-white" data-dashboard-target="content">
-      <p>Bye</p>
+    <div class="container border border-white py-2">
+      <h2 class="text-light" > Here are all your topics in the forum:  </h2 >
+       <% current_user.topics.each do |topic| %>
+        <div class="container border border-white my-2 py-2">
+          <h4 class='text-light'><%= topic.title %></h2>
+          <p> <%= link_to 'Go to topic', topic_path(topic), class:'btn btn-ghost rounded-pill', target:'_blank' %> </p>
+          <p> <%= pluralize(topic.replies.count, "reply") %> </p>
+        </div>
+       <% end %>
     </div>
   <% end %>
