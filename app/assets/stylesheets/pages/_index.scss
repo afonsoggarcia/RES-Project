@@ -6,71 +6,19 @@
 @import "calculator";
 @import "converted";
 
-.icon-heart {
-  color: rgb(255, 54, 91);
+.btn-form {
+  color: rgb(231, 226, 210);
+  padding: 6px 24px;
+  font-size: 16px;
+  font-family: helvetica;
+  border-radius: 24px;
+  background: #070707e7;
+  text-decoration: none;
+  // transition: background 0.3s ease;
 }
 
-.icon-heart-off:hover{
-  color: rgb(255, 54, 91);
-}
-
-.icon-heart-off {
-  color: rgb(0, 0, 0);
-}
-
-.bg-btn{
-  background-color: #f4f4f4;
-}
-
-
-@media (max-width: 767px) {
-  .carousel-inner .carousel-item > div {
-      display: none;
-  }
-  .carousel-inner .carousel-item > div:first-child {
-      display: block;
-  }
-}
-
-.carousel-inner .carousel-item.active,
-.carousel-inner .carousel-item-next,
-.carousel-inner .carousel-item-prev {
-  display: flex;
-}
-
-/* medium and up screens */
-@media (min-width: 768px) {
-
-  .carousel-inner .carousel-item-end.active,
-  .carousel-inner .carousel-item-next {
-    transform: translateX(25%);
-  }
-
-  .carousel-inner .carousel-item-start.active,
-  .carousel-inner .carousel-item-prev {
-    transform: translateX(-25%);
-  }
-}
-
-.carousel-inner .carousel-item-end,
-.carousel-inner .carousel-item-start {
-transform: translateX(0);
-}
-
-.carousel-control-prev {
-  width: 5%;
-  position: absolute;
-  left: -30px;
-}
-
-.carousel-control-next {
-  width: 5%;
-  position: absolute;
-  right: -30px;
-}
-
-
-.arrow-wrapper {
-  position: relative;
-
+.btn-form:hover {
+  opacity: 1;
+  color: #ffffff;
+  background: #BAD1C2;
 }

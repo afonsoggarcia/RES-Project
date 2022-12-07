@@ -1,5 +1,5 @@
 <div data-controller="converter">
   <button class="btn-ghost text-dark" data-converter-target="button">
-     Number of converted flat-earthers: <span data-converter-target="number"> <%= User.where(converted: true).count %> </span>
+      Converted flat-earthers: <span data-converter-target="number"> <%= User.where(converted: true).count %> </span>
   </button>
 </div>
