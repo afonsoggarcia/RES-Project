@@ -36,7 +36,7 @@ puts '5 categories created'
   article_neil = Article.new(
     title: Faker::Book.title,
     subtitle: Faker::Quote.matz,
-    content: Faker::Lorem.paragraph(sentence_count: 80),
+    rich_body: Faker::Lorem.paragraph(sentence_count: 80),
     accepted: true,
     category_id: rand(1..5),
     source_url: 'https://pt.wikipedia.org/wiki/Neil_deGrasse_Tyson',
@@ -53,7 +53,7 @@ puts '5 categories created'
   article_bibi = Article.new(
     title: Faker::Book.title,
     subtitle: Faker::Quote.matz,
-    content: Faker::Lorem.paragraph(sentence_count: 80),
+    rich_body: Faker::Lorem.paragraph(sentence_count: 80),
     accepted: true,
     category_id: rand(1..5),
     source_url: 'https://pt.wikipedia.org/wiki/Bibi_Bailas',

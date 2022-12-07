@@ -43,16 +43,19 @@
                   <%= f.input :photo, label:'Photo', as: :file %>
                 </div>
                 <div class="form-actions">
-                  <%= f.button :submit, "Update", class:'btn btn-dark d-block w-100' %>
+                  <%= f.button :submit, "Update", class:'btn-form w-100 w-100 mt-3' %>
                 </div>
               <% end %>
               <br/>
-              <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
-              <%= link_to "Back", :back %>
+              <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link text-dark" %>
+              <%= link_to "Back", :back, class: "text-dark"%>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+</div>
+</section>
 </div>

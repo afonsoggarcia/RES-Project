@@ -1,0 +1,10 @@
+  <%= turbo_frame_tag 'content' do %>
+    <% Request.where(accepted: false).each do |request| %>
+      <div class="container border border-white my-2 py-2">
+        <h2 class='text-light'><%= request.user.nickname %></h2>
+        <p><%= request.user.description %> </p>
+        <p><%= request.content %> </p>
+        <%= link_to 'Accept', request_path(request), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class:'btn btn-ghost rounded-pill'%>
+      </div>
+    <% end %>
+  <% end %>

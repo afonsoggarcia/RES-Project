@@ -30,10 +30,9 @@
                             value: params[:query],
                             class: "form-control",
                             type: "search",
-                            placeholder: "Search Articles...",
+                            placeholder: "Search Articles... 🔎",
                             label: "Search",
                             data: {action: 'keyup->search#perform'} %>
-
           <% end %>
       </ul>
       <ul class="navbar-nav">
@@ -47,7 +46,7 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Edit Profile", "/users/edit", class: "dropdown-item" %>
               <%= link_to "Dashboard", dashboard_path, class: "dropdown-item", target:'_blank' %>
-              <%= link_to "Chatrooms", chatrooms_1_path, class: "dropdown-item", target: "_blank" %>
+              <%= link_to "Chatrooms", chatroom_path(1), class: "dropdown-item", target: "_blank" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
