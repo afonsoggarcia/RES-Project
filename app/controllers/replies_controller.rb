@@ -18,13 +18,13 @@ class RepliesController < ApplicationController
   end
 
   def create
-    topic = Topic.find(params[:topic_id])
+    @topic = Topic.find(params[:topic_id])
     @reply = Reply.create(reply_params)
-    @reply.topic = topic
+    @reply.topic = @topic
     @reply.user = current_user
     authorize @reply
     if @reply.save
-      redirect_to topic_path(topic)
+      redirect_to topic_path(@topic)
     else
       render :new, status: :unprocessable_entity
     end
