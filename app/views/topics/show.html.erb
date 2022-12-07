@@ -1,82 +1,76 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/converter' %>
-<div class="forum bg-dark">
-    <div class=" header d-flex align-items-center justify-content-between">
+  <div class=" header d-flex align-items-center justify-content-between">
     <h2 class="text-dark">RoundEarthForum</h2>
     <% if current_user && (@topic.user == current_user || current_user.admin) %>
-    <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">Edit Topic</a>
-     <%end%>
-    </div>
-
-<div class="container">
-    <div class="collapse mx-5" id="collapseExample2">
-    <%= render "form", topic: @topic %>
-    </div>
-
-  <div class="topic-topic m-5 p-4 text-center">
-    <h1 class="text-dark"> <%=@topic.title%> </h1>
-    <h5 class="text-dark"> <%=@topic.description%></h5>
-  </div>
-
-  <div class="header-2 d-flex align-items-center justify-content-between">
-    <h1 class="text-light ">Comments:</h1>
-    <% if current_user %>
-    <a class="btn btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Comment</a>
+      <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">Edit Topic</a>
     <%end%>
   </div>
-
-  <div class="px-5 text-center">
-  <div class="collapse" id="collapseExample">
-  <%= render"form_reply", topic: @topic %>
-  </div>
-  </div>
-
-  <% @topic.replies.reverse.each do |reply| %>
-    <div class="topic-topic-1 m-5 p-4 text-dark">
+<div class="back-topics" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg);">
+  <div class="container">
+    <div class="collapse mx-5" id="collapseExample2">
+      <%= render "form", topic: @topic %>
+    </div>
+    <div class="topic-topic m-5 p-4 text-center">
+      <h1 class="text-dark"> <%=@topic.title%> </h1>
+      <h5 class="text-dark"> <%=@topic.description%></h5>
+    </div>
+    <div class="header-2 d-flex align-items-center justify-content-between">
+      <h1 class="text-light ">Comments:</h1>
+      <% if current_user %>
+        <a class="btn btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Comment</a>
+      <%end%>
+    </div>
+    <div class="px-5 text-center">
+      <div class="collapse" id="collapseExample">
+        <%= render"form_reply", topic: @topic %>
+      </div>
+    </div>
+    <% @topic.replies.reverse.each do |reply| %>
+      <div class="topic-topic-1 m-5 p-4 text-dark">
         Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
-        <strong><%= reply.user.nickname%></p></strong><h3><%= reply.content %></h3>
-        <% if current_user && reply.user == current_user  %>
-          <br/><%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <strong><%= reply.user.nickname%></p>
+      </strong>
+      <h3><%= reply.content %></h3>
+      <% if current_user && reply.user == current_user  %>
+        <br/>
+        <%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
           Delete <i class="fa-regular fa-trash-can"></i>
-          <% end %>
         <% end %>
-        <% reply.comments.reverse.each do |comment| %>
-          <div class=" m-3 px-5">
+      <% end %>
+      <% reply.comments.reverse.each do |comment| %>
+        <div class=" m-3 px-5">
           <hr>
           Published <%=time_ago_in_words(comment.created_at)%> ago, sent by:
-          <strong><%= comment.user.nickname%></p></strong><h5><%= comment.content %></h5>
-          <% if current_user && (comment.user == current_user || current_user.admin) %>
-            <br/><%= link_to comment_path(comment), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-              Delete <i class="fa-regular fa-trash-can"></i>
-            <%end%>
-          <% end %>
-          </div>
+          <strong><%= comment.user.nickname%></p>
+        </strong>
+        <h5><%= comment.content %></h5>
+        <% if current_user && (comment.user == current_user || current_user.admin) %>
+          <br/>
+          <%= link_to comment_path(comment), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+            Delete <i class="fa-regular fa-trash-can"></i>
+          <%end%>
         <% end %>
-
-
-
-     <% if current_user %>
-        <%= simple_form_for [ @topic, reply, @comment] do |f| %>
-          <div class="container">
-            <div class="form-comment-1 p-4 text-center">
-                <%= f.error_notification %>
-                <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-                <div class="form-inputs">
-                  <%= f.input :content, label:"Answer" %>
-                </div>
-
-                <div class="form-actions">
-                  <%= f.button :submit, 'Submit', class: 'btn btn-dark rounded-pill d-block w-100' %>
-                </div>
-
+      </div>
+    <% end %>
+    <% if current_user %>
+      <%= simple_form_for [ @topic, reply, @comment] do |f| %>
+        <div class="container">
+          <div class="form-comment-1 p-4 text-center">
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <div class="form-inputs">
+              <%= f.input :content, label:"Answer" %>
+            </div>
+            <div class="form-actions">
+              <%= f.button :submit, 'Submit', class: 'btn btn-dark rounded-pill d-block w-100' %>
             </div>
           </div>
-        <% end %>
-
-          <hr>
+        </div>
+      <% end %>
+      <hr>
     <%end%>
-    </div>
-  <%end%>
+  </div>
+<%end%>
 </div>
 </div>

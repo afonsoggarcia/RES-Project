@@ -36,5 +36,5 @@ class LikesController < ApplicationController
     Like.where(user_id: current_user.id, article_id:
     params[:article_id]).exists?
   end
-  
+
 end
