@@ -1,5 +1,9 @@
 class ArticlePolicy < ApplicationPolicy
 
+  def show?
+    record.accepted ? true : user.admin || record.user == user
+  end
+
   def create?
     user.publisher || user.admin
   end
