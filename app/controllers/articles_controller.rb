@@ -4,12 +4,10 @@ class ArticlesController < ApplicationController
 
   def index
     skip_policy_scope
-    @articles = Article.where(accepted: true).order("created_at DESC")
     if params[:query].present?
-      @articles = Article.where("title ILIKE ?", "%#{params[:query]}%")
+      @articles = Article.where("title ILIKE ? AND accepted = ?", "%#{params[:query]}%", true)
     else
-      @articles = Article.all.first(4)
-      @articles = Article.all
+      @articles = Article.where(accepted: true).order("created_at DESC")
     end
     respond_to do |format|
       if turbo_frame_request?
