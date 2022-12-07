@@ -17,9 +17,9 @@
     <%= turbo_frame_tag 'search' do %>
       <div class="row mx-auto my-auto justify-content-center arrow-wrapper">
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner" role="listbox">
+          <div class="carousel-inner" data-controller="carousel" role="listbox">
             <% articles.each_with_index do |article, index|%>
-              <div class="carousel-item <%="active"if index.zero? %>">
+              <div class="carousel-item <%="active"if index.zero? %>" data-carousel-target="cards">
                 <div class="col-md-3">
                   <div class="card-article p-2">
                     <% if article.photo.attached? %>
@@ -50,19 +50,3 @@
     <% end %>
   </div>
 </div>
-<script>
-  let items = document.querySelectorAll('.carousel .carousel-item')
-  items.forEach((el) => {
-      const minPerSlide = 4
-      let next = el.nextElementSibling
-      for (var i=1; i<minPerSlide; i++) {
-          if (!next) {
-              // wrap carousel by using first child
-          	next = items[0]
-        	}
-          let cloneChild = next.cloneNode(true)
-          el.appendChild(cloneChild.children[0])
-          next = next.nextElementSibling
-      }
-  })
-</script>
