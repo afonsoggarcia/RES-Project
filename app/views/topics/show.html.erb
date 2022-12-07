@@ -3,7 +3,7 @@
 <div class="forum bg-dark">
     <div class=" header d-flex align-items-center justify-content-between">
     <h2 class="text-dark">RoundEarthForum</h2>
-    <% if current_user && comment.user == current_user  %>
+    <% if current_user && (@topic.user == current_user || current_user.admin) %>
     <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">Edit Topic</a>
      <%end%>
     </div>
@@ -20,7 +20,7 @@
 
   <div class="header-2 d-flex align-items-center justify-content-between">
     <h1 class="text-light ">Comments:</h1>
-    <% if current_user && comment.user == current_user  %>
+    <% if current_user %>
     <a class="btn btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Comment</a>
     <%end%>
   </div>
@@ -45,7 +45,7 @@
        <hr>
         Published <%=time_ago_in_words(comment.created_at)%> ago, sent by:
         <strong><%= comment.user.nickname%></p></strong><h5><%= comment.content %></h5>
-        <% if current_user && comment.user == current_user  %>
+        <% if current_user && (comment.user == current_user || current_user.admin) %>
           <br/><%= link_to comment_path(comment), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
           Delete <i class="fa-regular fa-trash-can"></i>
         <%end%>
@@ -54,7 +54,7 @@
         </div>
 
         <% end %>
-      <% if current_user && comment.user == current_user  %>
+      <% if current_user %>
       <%= render"form_comment", reply: reply%>
              <hr>
   <%end%>

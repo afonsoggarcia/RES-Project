@@ -3,7 +3,7 @@
 <div class="forum bg-dark">
   <div class=" header d-flex align-items-center justify-content-between">
      <h2 class=" text-dark">RoundEarthForum</h2>
-     <% if current_user && comment.user == current_user  %>
+     <% if current_user %>
       <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Post</a>
     <%end%>
   </div>
