@@ -11,27 +11,19 @@ class CommentsController < ApplicationController
     skip_authorization
   end
 
-  def new
+  def create
     @topic = Topic.find(params[:topic_id])
     @reply = Reply.find(params[:reply_id])
-    @comment = Comment.new
-    authorize @comment
-  end
-
-  def create
-    topic = Topic.find(params[:topic_id])
-    reply = Reply.find(params[:reply_id])
-    @comment = Comment.create(comment_params)
-    @comment.reply = reply
+    @comment = Comment.new(comment_params)
+    @comment.reply = @reply
     @comment.user = current_user
     authorize @comment
     if @comment.save
-      redirect_to topic_path(topic)
+      redirect_to topic_path(@topic)
     else
-      render :new, status: :unprocessable_entity
+      redirect_to topic_path(@topic), status: :unprocessable_entity, notice: "comment can't be blank"
     end
   end
-
 
   def edit
     @comment = Comment.find(params[:id])
