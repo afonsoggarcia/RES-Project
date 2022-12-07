@@ -50,14 +50,22 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:article][:category])
-    @article.category = @category
-    @article.accepted = false
-    authorize @article
-    if @article.update(article_params)
-      redirect_to @article, notice: "Article was successfully updated."
+    if params[:accept] == 'true'
+      @article.accepted = true
+      authorize @article
+      @article.save
+      @articles = Article.where(accepted: false)
+      render partial: 'pages/newarticles'
     else
-      render :edit, status: :unprocessable_entity
+      @category = Category.find(params[:article][:category])
+      @article.category = @category
+      @article.accepted = false
+      authorize @article
+      if @article.update(article_params)
+        redirect_to @article, notice: "Article was successfully updated."
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
