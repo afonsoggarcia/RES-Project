@@ -8,6 +8,10 @@ class RequestPolicy < ApplicationPolicy
     user.admin
   end
 
+  def destroy?
+    user.admin
+  end
+
   class Scope < Scope
     # scope.all
   end

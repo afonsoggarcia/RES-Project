@@ -5,7 +5,7 @@ class LikesController < ApplicationController
   def create
     skip_authorization
     if already_liked?
-      flash[:notice] = "You can't like more than once"
+      # flash[:notice] = "You can't like more than once"
     else
       @article.likes.create(user_id: current_user.id)
     end
@@ -15,7 +15,7 @@ class LikesController < ApplicationController
   def destroy
     skip_authorization
     if !(already_liked?)
-      flash[:notice] = "Cannot unlike"
+      # flash[:notice] = "Cannot unlike"
     else
       @like.destroy
     end
