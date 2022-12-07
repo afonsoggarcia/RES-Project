@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     skip_policy_scope
+    @articles = Article.all.order("created_at DESC")
     if params[:query].present?
       @articles = Article.where("title ILIKE ?", "%#{params[:query]}%")
     else
