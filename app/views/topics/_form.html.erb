@@ -1,11 +1,11 @@
 <%= simple_form_for(@topic) do |f|%>
-<div class="form-comment p-4 text-center">
- <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <%=f.input :title%>
-  <%=f.input :description%>
-  <% if current_user %>
-  <%= f.button :submit, 'Submit', class: 'btn btn-dark rounded-pill d-block w-100' %>
-  <%end%>
+  <div class="form-comment p-4 text-center">
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <%=f.input :title%>
+    <%=f.input :description%>
+    <% if current_user %>
+      <%= f.button :submit, 'Submit', class: 'btn btn-dark rounded-pill d-block w-100' %>
+    <%end%>
   <%end%>
 </div>

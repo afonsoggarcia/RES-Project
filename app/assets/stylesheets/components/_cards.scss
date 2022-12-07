@@ -8,9 +8,17 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   background: white;
 
+
 }
 .rounded-style {
   border-radius: 5px;
+}
+
+.back-topics {
+  background-size: cover;
+  background-position: center;
+  padding: 10px 0;
+  // height: 100vh;
 }
 
 .forum {
