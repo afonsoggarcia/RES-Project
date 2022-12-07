@@ -1,12 +1,12 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/converter' %>
-<div class="forum bg-dark">
   <div class=" header d-flex align-items-center justify-content-between">
     <h2 class=" text-dark">RoundEarthForum</h2>
     <% if current_user %>
       <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Post</a>
     <%end%>
   </div>
+<div class="back-topics" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg);">
   <div class="container">
     <div class="collapse mx-5" id="collapseExample">
       <%= render"form" %>
