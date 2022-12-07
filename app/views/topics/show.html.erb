@@ -3,7 +3,9 @@
 <div class="forum bg-dark">
     <div class=" header d-flex align-items-center justify-content-between">
     <h2 class="text-dark">RoundEarthForum</h2>
+    <% if current_user && comment.user == current_user  %>
     <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">Edit Topic</a>
+     <%end%>
     </div>
 
 <div class="container">
@@ -18,7 +20,9 @@
 
   <div class="header-2 d-flex align-items-center justify-content-between">
     <h1 class="text-light ">Comments:</h1>
+    <% if current_user && comment.user == current_user  %>
     <a class="btn btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Comment</a>
+    <%end%>
   </div>
 
   <div class="px-5 text-center">
@@ -26,7 +30,6 @@
   <%= render"form_reply" %>
   </div>
   </div>
-
 
   <% @topic.replies.reverse.each do |reply| %>
   <div class="topic-topic-1 m-5 p-4 text-dark">
@@ -51,9 +54,11 @@
         </div>
 
         <% end %>
-             <hr>
+      <% if current_user && comment.user == current_user  %>
       <%= render"form_comment", reply: reply%>
-    <%end%>
+             <hr>
+  <%end%>
   </div>
+    <%end%>
 </div>
 </div>

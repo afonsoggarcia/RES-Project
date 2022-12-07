@@ -1,51 +1,73 @@
 <%= render 'shared/navbar' %>
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+<div class="forum bg-dark">
+<section class="position-relative py-4 py-xl-5">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-5 col-md-6 col-xxl-4">
+                <div class="card mb-5">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <h3>Editar Perfil de <%= @user.nickname.to_s.humanize %></h3>
+                        <% if current_user.photo.attached? %>
+                          <%= cl_image_tag @user.photo.key, :width=>150, :height=>150, :gravity=>"face", :crop=>"fill", :radius=>"max" if @user.photo.attached? %>
+                           <% else %>
+                                    <%= image_tag "planetinha.png",:width=>150, :height=>150, :gravity=>"face", :crop=>"fill", :radius=>"max" %>
+                                  <% end %>
+                                                            <br/>
+                        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                          <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+                          <div class="form-inputs">
+                            <%= f.input :email, required: true, autofocus: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+                            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                              <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+                            <% end %>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :first_name,
-                required: true %>
-    <%= f.input :last_name,
-                required: true %>
-    <%= f.input :nickname,
-                required: true %>
-    <%= f.input :believer, input_html: { class: "toggle" } %>
-    <%# f.input :believer,
-                required: true %>
-    <%= f.input :description,
-                required: true %>
-    <%= f.input :photo, label:'Photo', as: :file %>
-  </div>
+                            <%= f.input :password,
+                                        hint: "leave it blank if you don't want to change it",
+                                        required: false,
+                                        input_html: { autocomplete: "new-password" } %>
+                            <%= f.input :password_confirmation,
+                                        required: false,
+                                        input_html: { autocomplete: "new-password" } %>
+                            <%= f.input :current_password,
+                                        hint: "we need your current password to confirm your changes",
+                                        required: true,
+                                        input_html: { autocomplete: "current-password" } %>
+                            <%= f.input :first_name,
+                                        required: true %>
+                            <%= f.input :last_name,
+                                        required: true %>
+                            <%= f.input :nickname,
+                                        required: true %>
+                            <%= f.input :believer, input_html: { class: "toggle" } %>
+                            <%# f.input :believer,
+                                        required: true %>
+                            <%= f.input :description,
+                                        required: true %>
+                            <%= f.input :photo, label:'Photo', as: :file %>
+                          </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
+                          <div class="form-actions">
+                            <%= f.button :submit, "Update", class:'btn btn-dark d-block w-100' %>
+                          </div>
+                        <% end %>
+                        <br/>
 
-<h3>Cancel my account</h3>
 
-<div class="d-flex align-items-center">
-  <div>Unhappy?</div>
-  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
+
+
+
+                          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-link" %>
+
+
+                        <%= link_to "Back", :back %>
+
+                            </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+</section>
 </div>
-
-<%= link_to "Back", :back %>
