@@ -8,6 +8,7 @@ class PagesController < ApplicationController
   def about
     skip_policy_scope
     @publishers = User.where(publisher: true)
+    @admins = User.where(admin: true)
   end
 
   def converted
