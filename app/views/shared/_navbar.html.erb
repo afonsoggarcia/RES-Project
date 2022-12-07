@@ -5,20 +5,22 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <% if current_user == nil %>
         <li class="nav-item">
           <a class="nav-link" href="/">HOME</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about">ABOUT</a>
-        </li>
+        <%end%>
         <li class="nav-item">
           <a class="nav-link" href="/articles">ARTICLES</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/topics">FORUM</a>
+        </li>
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/features">FEATURES</a>
           </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">ABOUT</a>
         </li>
           <%= form_with url: articles_path,
                         method: :get,
@@ -31,11 +33,7 @@
                             placeholder: "Search Articles...",
                             label: "Search",
                             data: {action: 'keyup->search#perform'} %>
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="submit">
-                <i class="fas fa-search text-muted"></i>
-              </button>
-            </span>
+
           <% end %>
       </ul>
       <ul class="navbar-nav">
@@ -60,7 +58,7 @@
           <li class="nav-item">
             <%= link_to "LOGIN", new_user_session_path, class: "nav-link" %>
           </li>
-        <% end %>
+         <% end %>
       </ul>
     </div>
   </div>
