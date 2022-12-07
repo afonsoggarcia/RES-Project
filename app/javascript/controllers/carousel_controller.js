@@ -2,25 +2,24 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="carousel"
 export default class extends Controller {
-  static targets =["card"]
+  static targets =["cards"]
+
   connect() {
-    console.log(this.cardTargets)
-    this.cardTargets[this.cardTargets.length -1 ].classList.add("d-none")
-  }
-
-  rotate(event) {
-    console.log(event)
-    this.firstCard = this.cardTargets.shift()
-    this.cardTargets.push(this.firstCard)
-    this.cardTargets.forEach(card => {
-      if (this.cardTargets.indexOf(card) <= 3){
-        card.classList.remove("d-none")
-      }
-      if (this.cardTargets.indexOf(card) > 3){
-        card.classList.add("d-none")
-
-      }
+    console.log(this.cardsTargets)
+    this.cardsTargets.forEach((el) => {
+        const minPerSlide = 4
+        let next = el.nextElementSibling
+        for (var i=1; i<minPerSlide; i++) {
+            if (!next) {
+                // wrap carousel by using first child
+              next = this.cardsTarget[0]
+            }
+            let cloneChild = next.cloneNode(true)
+            el.appendChild(cloneChild.children[0])
+            next = next.nextElementSibling
+        }
     })
-
   }
+
+
 }
