@@ -12,7 +12,7 @@
   <%= render"form" %>
   </div>
   <% @topics.each do |topic| %>
-    <div class="cards m-5 p-4 text-center">
+    <div class="cards m-5 p-4 text-center rounded-style">
       <div class=" d-flex justify-content-between">
       <div><p>Published <%=time_ago_in_words(topic.created_at)%> ago,
       sent by: <strong><%= topic.user.nickname%></strong></div>

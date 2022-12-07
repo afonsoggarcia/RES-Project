@@ -13,7 +13,7 @@
     <%= render "form", topic: @topic %>
     </div>
 
-  <div class="topic-topic m-5 p-4 text-center">
+  <div class="topic-topic m-5 p-4 text-center rounded-style">
     <h1 class="text-dark"> <%=@topic.title%> </h1>
     <h5 class="text-dark"> <%=@topic.description%></h5>
   </div>
@@ -32,7 +32,7 @@
   </div>
 
   <% @topic.replies.reverse.each do |reply| %>
-  <div class="topic-topic-1 m-5 p-4 text-dark">
+  <div class="rounded-style topic-topic-1 m-5 p-4 text-dark">
       Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
       <strong><%= reply.user.nickname%></p></strong><h3><%= reply.content %></h3>
       <% if current_user && reply.user == current_user  %>
