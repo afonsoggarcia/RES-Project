@@ -11,6 +11,13 @@ class RequestsController < ApplicationController
     render partial: 'pages/requests'
   end
 
+  def destroy
+    @request = Request.find(params[:id])
+    authorize @request
+    @request.destroy
+    render partial: 'pages/requests'
+  end
+
   def create
     @request = Request.new(request_params)
     @request.user = current_user
