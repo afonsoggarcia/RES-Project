@@ -24,6 +24,7 @@ class PagesController < ApplicationController
   def dashboard
     current_user.admin ? admin_info : @articles = Article.where(user: current_user)
     @publishers = User.where(publisher: true)
+    @request = Request.new
 
     respond_to do |format|
       if turbo_frame_request? && turbo_frame_request_id == 'content'
@@ -42,6 +43,10 @@ class PagesController < ApplicationController
     point_b = latlong(params[:pointb])
     @great_circle = calculate_gc(point_a, point_b)
     @rhumb_dist = calculate_rhumb(point_a, point_b)
+  end
+
+  def accept_publisher
+    
   end
 
   def convert_user
