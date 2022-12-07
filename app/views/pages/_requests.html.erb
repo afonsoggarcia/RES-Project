@@ -5,6 +5,7 @@
         <p><%= request.user.description %> </p>
         <p><%= request.content %> </p>
         <%= link_to 'Accept', request_path(request), data: {turbo_method: :patch, turbo_confirm: "Are you sure?"}, class:'btn btn-ghost rounded-pill'%>
+        <%= link_to 'Reject', request_path(request), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn btn-danger rounded-pill'%>
       </div>
     <% end %>
   <% end %>
