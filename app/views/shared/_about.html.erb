@@ -29,4 +29,23 @@
       <%end%>
     </div>
   </div>
+  <div class="container about justify-content-center">
+    <h2>Our staff:</h2>
+    <div class="cards-article-grid">
+      <% @admins.each do |admin|%>
+        <div class="card-article">
+          <% if admin.photo.attached? %>
+            <%= cl_image_tag admin.photo.key, :width => 1920, :height => 1080, crop: :limit %>
+          <% else %>
+            <%= image_tag 'astronauta.jpg', style:"width = 1920; height = 1080;" %>
+          <% end %>
+          <div class="card-article-infos">
+            <h4><%= admin.first_name %></h4>
+            <h4><%= admin.last_name %></h4>
+            <p><%= admin.description %></p>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
 </div>
