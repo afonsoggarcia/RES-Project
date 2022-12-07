@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "calculator", to: "pages#calculator"
   get "distance", to: 'pages#distance'
   get "converted", to: 'pages#converted'
-  get "chatrooms/1", to: 'pages#chatrooms'
+  get "chatrooms", to: 'pages#chatrooms'
   resources :articles do
     resources :likes
   end
