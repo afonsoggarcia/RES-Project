@@ -11,4 +11,5 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :nickname, presence: true
   validates :nickname, uniqueness: true
   has_one_attached :photo
+  has_one :request
 end

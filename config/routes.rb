@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "calculator", to: "pages#calculator"
   get "distance", to: 'pages#distance'
   get "converted", to: 'pages#converted'
-  get "chatrooms/1", to: 'pages#chatrooms'
+  get "chatrooms", to: 'pages#chatrooms'
   resources :articles do
     resources :likes
   end
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :chatrooms, only: :show do
     resources :messages, only: :create
   end
+  resources :requests, only: [:create, :update]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")

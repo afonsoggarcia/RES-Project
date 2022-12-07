@@ -2,6 +2,10 @@
 <%= render 'shared/converter' %>
 <div class="container">
   <h2 class="article-title"><%= @article.title %></h2>
+  <p class="article-user">
+  Published <%=time_ago_in_words(@article.created_at)%> ago, sent by:
+  <strong><%= @article.user.nickname%></strong></p>
+  <br/>
   <div class="article-grid">
     <div class="social-icons text-center">
       <i class="fa-brands fa-facebook"></i>
@@ -31,3 +35,4 @@
       </div>
     </div>
   </div>
+</div>
