@@ -16,6 +16,6 @@ export default class extends Controller {
       this.buttonTarget.classList.add('btn-success')
       this.buttonTarget.classList.remove('btn-success')
     }
-    setInterval(addOne, 1000)
+    setInterval(addOne, Math.floor(Math.random() * (3000 - 500) + 500))
   }
 }

@@ -5,6 +5,7 @@
         <p><%= article.user.nickname %></p>
         <%= link_to 'See content', article_path(article), class:'btn btn-ghost rounded-pill', target:'_blank' %>
         <%= link_to 'Accept', article_path(article, accept: 'true'), class:'btn btn-success rounded-pill', data: {turbo_method: :patch, turbo_confirm: "Are you sure?"} %>
+        <%= link_to 'Reject', article_path(article), class:'btn btn-danger rounded-pill', data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
       </div>
     <% end %>
   <% end %>
