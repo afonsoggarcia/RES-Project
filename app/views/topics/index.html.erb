@@ -1,6 +1,7 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/converter' %>
-  <div class="cards">
+
+<div class="cards">
 <div class="forum bg-dark">
   <div class=" header d-flex align-items-center justify-content-between">
     <h2 class=" text-dark">RoundEarthForum</h2>
@@ -17,7 +18,7 @@
       <div class="topic-topic-1 m-5 p-4 text-center rounded-style">
         <div class=" d-flex justify-content-between">
           <div>
-            <p>Published <%=time_ago_in_words(topic.created_at)%> ago,
+            <p >Published <%=time_ago_in_words(topic.created_at)%> ago,
               sent by: <strong><%= topic.user.nickname%></strong></div>
             <div>
               <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
@@ -27,7 +28,7 @@
             </div>
           </div>
         <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
-          <h1 class=""> <%= topic.title%> </h1>
+          <h1 > <%= topic.title%> </h1>
         <%end%>
       </div>
     <%end%>
@@ -35,3 +36,4 @@
 </div>
 </div>
 </div>
+

@@ -44,6 +44,7 @@
         <strong><%= reply.user.nickname%></p>
       </strong>
       <h3><%= reply.content %></h3>
+
       <% if current_user && (reply.user == current_user || current_user.admin) %>
         <br/>
         <%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
