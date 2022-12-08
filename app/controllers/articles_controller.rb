@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show destroy edit update]
+  before_action :set_article, only: %i[show destroy edit update destroy]
   skip_before_action :authenticate_user!, only: %i[home index show]
 
   def index
@@ -65,6 +65,13 @@ class ArticlesController < ApplicationController
         render :edit, status: :unprocessable_entity
       end
     end
+  end
+
+  def destroy
+    authorize @article
+    @article.destroy
+    @articles = Article.where(accepted: false)
+    render partial: 'pages/newarticles'
   end
 
   private
