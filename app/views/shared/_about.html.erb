@@ -34,7 +34,7 @@
       <% @admins.each do |admin|%>
         <div class="card-article">
           <% if admin.photo.attached? %>
-            <%= cl_image_tag admin.photo.key, :width => 1400, :height => 1400, :gravity=>"face", :crop=>"fill" %>
+            <%= cl_image_tag admin.photo.key, :width => 1920, :height => 1080, crop: :thumb, gravity: :face%>
           <% else %>
             <%= image_tag 'astronauta.jpg', style:"width = 1920; height = 1080;" %>
           <% end %>
