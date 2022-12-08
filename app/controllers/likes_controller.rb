@@ -1,11 +1,14 @@
 class LikesController < ApplicationController
   before_action :find_article
   before_action :find_like, only: [:destroy]
+  skip_before_action :authenticate_user!, only: %i[create]
 
   def create
     skip_authorization
+    return redirect_to new_user_session_path, notice: "Sign in or sign up before liking our articles" if current_user.nil?
+
     if already_liked?
-      # flash[:notice] = "You can't like more than once"
+      flash[:notice] = "You can't like more than once"
     else
       @article.likes.create(user_id: current_user.id)
     end
