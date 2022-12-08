@@ -12,3 +12,9 @@
   text-align: left;
   margin: 0 0 0 56px;
 }
+
+.txt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
