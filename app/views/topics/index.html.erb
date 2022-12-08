@@ -1,5 +1,7 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/converter' %>
+
+<div class="cards">
 <div class="forum bg-dark">
   <div class=" header d-flex align-items-center justify-content-between">
     <h2 class=" text-dark">RoundEarthForum</h2>
@@ -7,13 +9,13 @@
       <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Post</a>
     <%end%>
   </div>
-<div class="back-topics" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg);">
+<div class="back-topics py-3" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg);">
   <div class="container">
     <div class="collapse mx-5" id="collapseExample">
       <%= render"form" %>
     </div>
     <% @topics.each do |topic| %>
-      <div class="cards m-5 p-4 text-center rounded-style">
+      <div class="topic-topic-1 m-5 p-4 text-center rounded-style">
         <div class=" d-flex justify-content-between">
           <div>
             <p >Published <%=time_ago_in_words(topic.created_at)%> ago,
@@ -22,8 +24,9 @@
               <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
                 <%= topic.replies.count%> Comment(s)
                 <i class="fa-solid fa-comments"></i></p>
-            <%end%></div>
-        </div>
+            <%end%>
+            </div>
+          </div>
         <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
           <h1 > <%= topic.title%> </h1>
         <%end%>
@@ -32,3 +35,5 @@
   </div>
 </div>
 </div>
+</div>
+

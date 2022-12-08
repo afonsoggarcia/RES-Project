@@ -1,6 +1,7 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/converter' %>
 
+  <div class="cards">
 <div class="forum bg-dark">
   <div class=" header d-flex align-items-center justify-content-between">
     <h2 class="text-dark">RoundEarthForum</h2>
@@ -8,16 +9,21 @@
       <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">Edit Topic</a>
     <%end%>
   </div>
-
-<div class="back-topics" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg);">
+<div class="back-topics py-3" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg);">
   <div class="container">
     <div class="collapse mx-5" id="collapseExample2">
       <%= render "form", topic: @topic %>
     </div>
 
-    <div class="topic-topic m-5 p-4 text-center rounded-style">
+    <div class="topic-topic-1 m-5 p-4 text-center rounded-style">
       <h1 class="text-dark"> <%=@topic.title%> </h1>
       <h5 class="text-dark"> <%=@topic.description%></h5>
+      <br/>
+      <% if current_user && (@topic.user == current_user || current_user.admin) %>
+       <%= link_to topic_path(@topic), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+            Delete <i class="fa-regular fa-trash-can"></i>
+            <%end%>
+            <%end%>
     </div>
     <div class="header-2 d-flex align-items-center justify-content-between">
       <h1 class="text-light ">Comments:</h1>
@@ -38,14 +44,16 @@
         <strong><%= reply.user.nickname%></p>
       </strong>
       <h3><%= reply.content %></h3>
-      <% if current_user && reply.user == current_user %>
+
+      <% if current_user && (reply.user == current_user || current_user.admin) %>
         <br/>
         <%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
           Delete <i class="fa-regular fa-trash-can"></i>
         <% end %>
-      <% end %>
+        <%end%>
+      <br/>
       <% reply.comments.reverse.each do |comment| %>
-        <div class=" m-3 px-5">
+
           <hr>
           Published <%=time_ago_in_words(comment.created_at)%> ago, sent by:
           <strong><%= comment.user.nickname%></p>
@@ -57,8 +65,8 @@
             Delete <i class="fa-regular fa-trash-can"></i>
           <%end%>
         <% end %>
-      </div>
     <% end %>
+       <hr>
     <% if current_user %>
       <%= simple_form_for [ @topic, reply, @comment] do |f| %>
         <div class="container">
@@ -75,9 +83,10 @@
           </div>
         </div>
       <% end %>
-      <hr>
+
     <%end%>
   </div>
 <%end%>
+</div>
 </div>
 </div>
