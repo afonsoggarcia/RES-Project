@@ -7,9 +7,8 @@
   height: 180px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   background: white;
-
-
 }
+
 .rounded-style {
   border-radius: 5px;
 }
@@ -17,8 +16,8 @@
 .back-topics {
   background-size: cover;
   background-position: center;
-  padding: 10px 0;
-  // height: 100vh;
+  padding: 104px 0;
+  min-height: calc(100vh - 3rem);
 }
 
 .forum {
@@ -33,16 +32,17 @@
  padding: 10px 60px 10px 60px;
  }
 
- .header-2 {
+.header-2 {
   width: 100%;
   margin: 0 auto;
   padding: 10px 60px 10px 60px;
-  }
+}
 
-  .topic-topic {
-    background: white;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  }
+.topic-topic {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
 .topic-topic-1 {
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -60,6 +60,7 @@
   flex-grow: 1;
   padding: 0 24px;
 }
+
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
   .cards {
