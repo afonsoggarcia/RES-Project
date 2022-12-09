@@ -37,8 +37,8 @@
         <% @topic.replies.reverse.each do |reply| %>
           <div class="rounded-style topic-topic-1 m-5 p-4 text-dark">
             Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
-            <strong><% if current_user.photo.attached? %>
-                <%= cl_image_tag current_user.photo.key,:width=>25, :height=>25, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+            <strong><% if reply.user.photo.attached? %>
+                <%= cl_image_tag reply.user.photo.key,:width=>25, :height=>25, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
               <% else %>
                 <%= image_tag "planetinha.png",:width=>20, :height=>20, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
               <% end %><%= reply.user.nickname%></p>
@@ -54,8 +54,8 @@
           <% reply.comments.reverse.each do |comment| %>
             <hr>
             Answered <%=time_ago_in_words(comment.created_at)%> ago, sent by:
-            <strong> <% if current_user.photo.attached? %>
-                <%= cl_image_tag current_user.photo.key,:width=>25, :height=>25, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+            <strong> <% if comment.user.photo.attached? %>
+                <%= cl_image_tag comment.user.photo.key,:width=>25, :height=>25, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
               <% else %>
                 <%= image_tag "planetinha.png",:width=>20, :height=>20, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
               <% end %><%= comment.user.nickname%></p>
