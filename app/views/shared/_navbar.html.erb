@@ -36,10 +36,10 @@
           <% end %>
       </ul>
       <ul class="navbar-nav">
-        <%= render 'shared/converted_counter' %>
+        <li class="nav-item mx-5"><%= render 'shared/converted_counter' %></li>
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to current_user.nickname, "/dashboard", class: "nav-link active", target:'_blank' %>
+            <%= link_to current_user.nickname, "/dashboard", class: "nav-link active my-1", target:'_blank' %>
           </li>
           <li class="nav-item dropdown">
             <%= render 'shared/user_avatar' %>
@@ -51,6 +51,7 @@
             </div>
           </li>
         <% else %>
+        
           <li class="nav-item">
             <%= link_to "SIGN UP", new_user_registration_path, class: "nav-link" %>
           </li>

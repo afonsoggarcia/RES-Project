@@ -14,20 +14,21 @@
       <%= render"form" %>
     </div>
     <% @topics.each do |topic| %>
-      <div class="topic-topic-1 m-5 p-4 text-center rounded-style">
-        <div class=" d-flex justify-content-between">
-          <div>
-            <p>Published <%=time_ago_in_words(topic.created_at)%> ago,
-              sent by: <strong><%= topic.user.nickname%></strong></div>
+      <div class="topic-topic-1 m-5 px-5 py-3 text-center rounded-style">
+
+
+              Published <%=time_ago_in_words(topic.created_at)%> ago,
+              sent by: <strong><%= topic.user.nickname%></strong>
+        </p>
+        <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
+          <h1 class=""> <%= topic.title%> </h1>
+          </p>
             <div>
               <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
                 <%= topic.replies.count%> Comment(s)
-                <i class="fa-solid fa-comments"></i></p>
+                <i class="fa-solid fa-comments"></i>
             <%end%>
             </div>
-          </div>
-        <%= link_to topic_path(topic), class:'text-decoration-none w-100 text-dark' do %>
-          <h1 class=""> <%= topic.title%> </h1>
         <%end%>
       </div>
     <%end%>

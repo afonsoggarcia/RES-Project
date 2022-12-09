@@ -1,6 +1,12 @@
 <div id="message-<%= message.id %>">
   <small>
-    <strong><%= message.user.nickname %></strong>
+    <strong>
+    <% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key,:width=>25, :height=>25, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+              <% else %>
+                <%= image_tag "planetinha.png",:width=>20, :height=>20, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+              <% end %>
+    <%= message.user.nickname %></strong>
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
   </small>
   <p><%= message.content %></p>
