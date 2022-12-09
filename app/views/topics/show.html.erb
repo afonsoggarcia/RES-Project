@@ -1,92 +1,92 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/converter' %>
-
-  <div class="cards">
-<div class="forum bg-dark">
-  <div class=" header d-flex align-items-center justify-content-between">
-    <h2 class="text-dark">RoundEarthForum</h2>
-    <% if current_user && (@topic.user == current_user || current_user.admin) %>
-      <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">Edit Topic</a>
-    <%end%>
-  </div>
-<div class="back-topics py-3" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg);">
-  <div class="container">
-    <div class="collapse mx-5" id="collapseExample2">
-      <%= render "form", topic: @topic %>
-    </div>
-
-    <div class="topic-topic-1 m-5 p-4 text-center rounded-style">
-      <h1 class="text-dark"> <%=@topic.title%> </h1>
-      <h5 class="text-dark"> <%=@topic.description%></h5>
-      <br/>
+<div class="cards">
+  <div class="forum bg-dark">
+    <div class=" header d-flex align-items-center justify-content-between">
+      <h2 class="text-dark">RoundEarthForum</h2>
       <% if current_user && (@topic.user == current_user || current_user.admin) %>
-       <%= link_to topic_path(@topic), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-            Delete <i class="fa-regular fa-trash-can"></i>
-            <%end%>
-            <%end%>
-    </div>
-    <div class="header-2 d-flex align-items-center justify-content-between">
-      <h1 class="text-light ">Comments:</h1>
-      <% if current_user %>
-        <a class="btn btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Comment</a>
+        <a class=" bt text-light btn btn-light bg-dark" data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">Edit Topic</a>
       <%end%>
     </div>
-    <div class="px-5 text-center">
-      <div class="collapse" id="collapseExample">
-        <%= render"form_reply", topic: @topic %>
-      </div>
-    </div>
-    <% @topic.replies.reverse.each do |reply| %>
-
-      <div class="rounded-style topic-topic-1 m-5 p-4 text-dark">
-
-        Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
-        <strong><%= reply.user.nickname%></p>
-      </strong>
-      <h3><%= reply.content %></h3>
-
-      <% if current_user && (reply.user == current_user || current_user.admin) %>
-        <br/>
-        <%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-          Delete <i class="fa-regular fa-trash-can"></i>
-        <% end %>
-        <%end%>
-      <br/>
-      <% reply.comments.reverse.each do |comment| %>
-
-          <hr>
-          Published <%=time_ago_in_words(comment.created_at)%> ago, sent by:
-          <strong><%= comment.user.nickname%></p>
-        </strong>
-        <h5><%= comment.content %></h5>
-        <% if current_user && (comment.user == current_user || current_user.admin) %>
+    <div class="back-topics py-3" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg);">
+      <div class="container">
+        <div class="collapse mx-5" id="collapseExample2">
+          <%= render "form", topic: @topic %>
+        </div>
+        <div class="topic-topic-1 m-5 p-4 text-center rounded-style">
+          <h1 class="text-dark"> <%=@topic.title%> </h1>
+          <h5 class="text-dark"> <%=@topic.description%></h5>
           <br/>
-          <%= link_to comment_path(comment), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-            Delete <i class="fa-regular fa-trash-can"></i>
+          <% if current_user && (@topic.user == current_user || current_user.admin) %>
+            <%= link_to topic_path(@topic), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+              Delete <i class="fa-regular fa-trash-can"></i>
+            <%end%>
           <%end%>
-        <% end %>
-    <% end %>
-       <hr>
-    <% if current_user %>
-      <%= simple_form_for [ @topic, reply, @comment] do |f| %>
-        <div class="container">
-
-          <div class="rounded-style form-comment-1 p-4 text-center">
-            <%= f.error_notification %>
-            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-            <div class="form-inputs">
-              <%= f.input :content, label:"Answer" %>
-            </div>
-            <div class="form-actions">
-              <%= f.button :submit, 'Submit', class: 'btn btn-dark rounded-pill d-block w-100' %>
-            </div>
+        </div>
+        <div class="header-2 d-flex align-items-center justify-content-between">
+          <h1 class="text-light ">Comments:</h1>
+          <% if current_user %>
+            <a class="btn btn btn-light" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">New Comment</a>
+          <%end%>
+        </div>
+        <div class="px-5 text-center">
+          <div class="collapse" id="collapseExample">
+            <%= render"form_reply", topic: @topic %>
           </div>
         </div>
-      <% end %>
-
+        <% @topic.replies.reverse.each do |reply| %>
+          <div class="rounded-style topic-topic-1 m-5 p-4 text-dark">
+            Published <%=time_ago_in_words(reply.created_at)%> ago, sent by:
+            <strong><% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key,:width=>25, :height=>25, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+              <% else %>
+                <%= image_tag "planetinha.png",:width=>20, :height=>20, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+              <% end %><%= reply.user.nickname%></p>
+          </strong>
+          <h3><%= reply.content %></h3>
+          <% if current_user && (reply.user == current_user || current_user.admin) %>
+            <br/>
+            <%= link_to reply_path(reply), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+              Delete <i class="fa-regular fa-trash-can"></i>
+            <% end %>
+          <%end%>
+          <br/>
+          <% reply.comments.reverse.each do |comment| %>
+            <hr>
+            Answered <%=time_ago_in_words(comment.created_at)%> ago, sent by:
+            <strong> <% if current_user.photo.attached? %>
+                <%= cl_image_tag current_user.photo.key,:width=>25, :height=>25, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+              <% else %>
+                <%= image_tag "planetinha.png",:width=>20, :height=>20, :gravity=>"face", :crop=>"fill", class:"avatar dropdown-toggle", id:"navbarDropdown", "type" => "button", "data-bs-toggle" => "dropdown", "aria-haspopup" => "true", "aria-expanded" => "false" %>
+              <% end %><%= comment.user.nickname%></p>
+          </strong>
+          <h5><%= comment.content %></h5>
+          <% if current_user && (comment.user == current_user || current_user.admin) %>
+            <br/>
+            <%= link_to comment_path(comment), class:"text-dark", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+              Delete <i class="fa-regular fa-trash-can"></i>
+            <%end%>
+          <% end %>
+        <% end %>
+        <hr>
+        <% if current_user %>
+          <%= simple_form_for [ @topic, reply, @comment] do |f| %>
+            <div class="container">
+              <div class="rounded-style form-comment-1 p-4 text-center">
+                <%= f.error_notification %>
+                <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+                <div class="form-inputs">
+                  <%= f.input :content, label:"Answer" %>
+                </div>
+                <div class="form-actions">
+                  <%= f.button :submit, 'Submit', class: 'btn btn-dark rounded-pill d-block w-100' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <%end%>
+      </div>
     <%end%>
   </div>
-<%end%>
-</div>
 </div>
 </div>
